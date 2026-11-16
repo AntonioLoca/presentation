@@ -4,35 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Qualificação de Doutorado – Antonio Luiz da Silva Loca | UENF</title>
+  <!-- Ícones Lucide via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --primary: #144d38;
-      --primary-light: #1e6b4f;
-      --primary-soft: #e7f3ee;
-      --accent: #b87333;
-      --accent-soft: #fbf3eb;
-      --bg-app: #0f1715;
+      --primary: #124734;
+      --primary-mid: #1c6b4e;
+      --primary-light: #e6f4ee;
+      --accent: #c2782d;
+      --accent-light: #fcf3ea;
+      --bg-dark: #0c1411;
       --bg-slide: #ffffff;
-      --bg-muted: #f5f7f6;
-      --text-main: #1b2421;
+      --bg-card: #f6f9f8;
+      --text-main: #18221e;
       --text-muted: #52635d;
-      --border: #d5e0dc;
+      --border: #d5e2dd;
       --danger: #b91c1c;
-      --danger-soft: #fef2f2;
-      --warn: #b45309;
-      --warn-soft: #fffbeb;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-app);
+      font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
       color: var(--text-main);
       height: 100vh;
       overflow: hidden;
@@ -42,14 +37,13 @@
       justify-content: center;
     }
 
-    /* Viewport & Slide Container (16:9 Aspect Ratio) */
-    #presentation-wrapper {
+    #stage {
       width: 100vw;
-      height: calc(100vh - 54px);
+      height: calc(100vh - 56px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 14px;
     }
 
     .slide {
@@ -59,1637 +53,1288 @@
       height: 100%;
       max-height: 720px;
       background: var(--bg-slide);
-      border-radius: 12px;
+      border-radius: 14px;
       box-shadow: var(--shadow);
-      padding: 44px 56px 52px;
+      padding: 40px 54px 48px;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
       overflow: hidden;
-      animation: fadeSlide 0.25s ease-out;
+      animation: slideIn 0.25s ease-out;
     }
 
-    .slide.active {
-      display: flex;
-    }
+    .slide.active { display: flex; }
 
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(6px); }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Header & Footer inside Slide */
-    .slide-header {
-      border-bottom: 2px solid var(--primary-soft);
-      padding-bottom: 12px;
-      margin-bottom: 18px;
+    /* Cabeçalho e Rodapé */
+    .header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
     }
-
-    .section-tag {
-      font-size: 0.78rem;
-      font-weight: 700;
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--accent);
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
-
-    .slide-header h2 {
-      font-size: 1.75rem;
+    .header h2 {
+      font-size: 1.68rem;
       color: var(--primary);
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1.15;
     }
-
-    .slide-footer {
-      position: absolute;
-      bottom: 14px;
-      left: 56px;
-      right: 56px;
+    .header-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      color: var(--primary);
       display: flex;
-      justify-content: space-between;
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      padding-top: 8px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
-    .slide-body {
+    .footer {
+      position: absolute;
+      bottom: 12px;
+      left: 54px;
+      right: 54px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+    }
+
+    .body {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
       overflow: hidden;
     }
 
-    /* Title Slide */
+    /* Capa */
     .slide.cover {
-      background: linear-gradient(135deg, #0e3829 0%, #16543d 60%, #1f6e51 100%);
-      color: #ffffff;
-      justify-content: space-between;
-      padding: 54px 64px;
+      background: linear-gradient(135deg, #0c3526 0%, #15523b 55%, #1e6e50 100%);
+      color: #fff;
+      padding: 52px 62px;
     }
-
-    .cover-badge {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.28);
+    .badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
       padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      border-radius: 999px;
+      font-size: 0.82rem;
       font-weight: 600;
+      letter-spacing: 0.04em;
     }
-
     .cover h1 {
-      font-size: 2.45rem;
-      line-height: 1.2;
+      font-size: 2.35rem;
+      line-height: 1.18;
       font-weight: 800;
-      margin: 18px 0;
-      max-width: 960px;
+      margin: 18px 0 14px;
     }
-
-    .cover-subtitle {
-      font-size: 1.15rem;
-      color: #d4ebe2;
-      max-width: 820px;
-      line-height: 1.45;
+    .cover-sub {
+      font-size: 1.12rem;
+      color: #cfe8de;
+      max-width: 780px;
+      line-height: 1.4;
     }
-
-    .cover-meta {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.22);
-      padding-top: 22px;
-      font-size: 0.92rem;
-    }
-
-    .cover-meta span {
-      display: block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: #9ed1bd;
-      margin-bottom: 4px;
-    }
-
-    /* Section Divider Slide */
-    .slide.divider {
-      background: var(--bg-muted);
-      border-left: 14px solid var(--primary);
-      justify-content: center;
-    }
-
-    .divider-num {
-      font-size: 4.5rem;
-      font-weight: 800;
-      color: var(--primary-soft);
-      -webkit-text-stroke: 2px var(--primary);
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-
-    .divider h2 {
-      font-size: 2.6rem;
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-
-    .divider p {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      max-width: 750px;
-    }
-
-    /* Typography & Lists */
-    p {
-      font-size: 1.02rem;
-      line-height: 1.48;
-    }
-
-    ul.clean-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    ul.clean-list li {
-      position: relative;
-      padding-left: 22px;
-      font-size: 1.0rem;
-      line-height: 1.42;
-    }
-
-    ul.clean-list li::before {
-      content: "▸";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: bold;
-    }
-
-    /* Grids & Cards */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .grid-3 {
+    .cover-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-      align-items: stretch;
+      border-top: 1px solid rgba(255,255,255,0.22);
+      padding-top: 18px;
+    }
+    .cover-grid span {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: #98cfba;
+      margin-bottom: 3px;
     }
 
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      align-items: stretch;
+    /* Divisores de Capítulo */
+    .slide.divider {
+      background: linear-gradient(120deg, #f4f8f6 65%, #e4f2ec 100%);
+      border-left: 14px solid var(--primary);
+      justify-content: center;
     }
+    .div-num {
+      font-size: 4.8rem;
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 2.5px var(--primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .divider h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+    .divider p { font-size: 1.15rem; color: var(--text-muted); max-width: 720px; }
+
+    /* Grids & Cards */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+    .g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+    .g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: stretch; }
 
     .card {
-      background: var(--bg-muted);
+      background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 18px 20px;
+      padding: 16px 18px;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
-
-    .card.highlight {
-      background: var(--primary-soft);
-      border-color: #9ecbb9;
-    }
-
-    .card.accent {
-      background: var(--accent-soft);
-      border-color: #e4c19f;
-    }
-
+    .card.green { background: var(--primary-light); border-color: #a3d1be; }
+    .card.amber { background: var(--accent-light); border-color: #e6c29e; }
     .card h3 {
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       color: var(--primary);
       font-weight: 700;
-    }
-
-    .card.accent h3 {
-      color: #8c521c;
-    }
-
-    .kpi-value {
-      font-size: 2.1rem;
-      font-weight: 800;
-      color: var(--primary);
-      line-height: 1.1;
-    }
-
-    .kpi-label {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    /* Callout / Hypothesis Box */
-    .callout {
-      background: var(--primary-soft);
-      border-left: 5px solid var(--primary);
-      padding: 16px 20px;
-      border-radius: 0 8px 8px 0;
-      font-size: 1.02rem;
-      line-height: 1.45;
-    }
-
-    .callout.warn {
-      background: var(--warn-soft);
-      border-left-color: var(--warn);
-    }
-
-    /* Tables */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.86rem;
-    }
-
-    th {
-      background: var(--primary);
-      color: #ffffff;
-      text-align: left;
-      padding: 9px 11px;
-      font-weight: 600;
-    }
-
-    td {
-      padding: 8px 11px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-      line-height: 1.32;
-    }
-
-    tr:nth-child(even) td {
-      background: #f8faf9;
-    }
-
-    /* Badges */
-    .badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-    .badge-low { background: #dcfce7; color: #166534; }
-    .badge-mod { background: #fef3c7; color: #92400e; }
-    .badge-high { background: #fee2e2; color: #991b1b; }
-
-    /* Bar Chart CSS */
-    .bar-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 9px;
-      font-size: 0.88rem;
+      gap: 8px;
     }
-    .bar-label {
-      width: 190px;
-      text-align: right;
-      font-weight: 600;
-      color: var(--text-main);
-      flex-shrink: 0;
-    }
-    .bar-track {
-      flex: 1;
-      background: #e6ece9;
-      height: 22px;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .bar-fill {
-      height: 100%;
-      background: var(--primary);
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      padding-left: 10px;
-      border-radius: 6px;
-    }
+    .card.amber h3 { color: #8c5119; }
 
-    /* Flow Diagram */
-    .flow-row {
+    .kpi { font-size: 2.1rem; font-weight: 900; color: var(--primary); line-height: 1.05; }
+    .kpi-sub { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
+
+    ul.bullets {
+      list-style: none;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      flex-direction: column;
+      gap: 8px;
     }
-    .flow-box {
-      flex: 1;
-      background: var(--bg-muted);
-      border: 1.5px solid var(--primary);
-      border-radius: 8px;
-      padding: 12px;
-      text-align: center;
-      font-size: 0.88rem;
+    ul.bullets li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.96rem;
+      line-height: 1.38;
     }
-    .flow-arrow {
-      font-size: 1.4rem;
+    ul.bullets li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
       color: var(--accent);
-      font-weight: bold;
+      font-weight: 900;
     }
 
-    /* Bottom Navigation Bar */
+    .callout {
+      background: var(--primary-light);
+      border-left: 5px solid var(--primary);
+      padding: 13px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.96rem;
+      line-height: 1.4;
+    }
+    .callout.warn { background: var(--accent-light); border-left-color: var(--accent); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    th { background: var(--primary); color: #fff; text-align: left; padding: 8px 10px; }
+    td { padding: 7px 10px; border-bottom: 1px solid var(--border); line-height: 1.3; vertical-align: top; }
+    tr:nth-child(even) td { background: #f8fbf9; }
+
+    /* Controles Inferiores */
     #controls {
-      height: 54px;
+      height: 56px;
       width: 100%;
       max-width: 1280px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 20px;
-      color: #d1ddd8;
-      font-size: 0.88rem;
+      color: #d4e0dc;
+      font-size: 0.86rem;
     }
-
-    .nav-btns {
-      display: flex;
-      gap: 8px;
-    }
-
-    button.ctrl-btn {
-      background: #1d2b27;
-      color: #e6f0ec;
-      border: 1px solid #324942;
-      padding: 6px 14px;
-      border-radius: 6px;
+    .btn-group { display: flex; gap: 8px; }
+    button.nav-btn {
+      background: #1a2924;
+      color: #eef5f2;
+      border: 1px solid #30473f;
+      padding: 7px 14px;
+      border-radius: 7px;
       cursor: pointer;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 600;
-      transition: background 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
     }
-
-    button.ctrl-btn:hover {
-      background: var(--primary);
-      border-color: var(--primary-light);
-    }
-
-    #progress-bar-wrap {
+    button.nav-btn:hover { background: var(--primary-mid); border-color: #34d399; }
+    #bar-wrap {
       flex: 1;
-      max-width: 420px;
+      max-width: 400px;
       height: 6px;
-      background: #23332e;
+      background: #20302b;
       border-radius: 4px;
-      margin: 0 20px;
+      margin: 0 18px;
       overflow: hidden;
     }
+    #bar-fill { height: 100%; background: #34d399; width: 3.33%; transition: width 0.25s; }
 
-    #progress-bar {
-      height: 100%;
-      background: #34d399;
-      width: 3.33%;
-      transition: width 0.25s ease;
-    }
-
-    /* Overview Grid Modal */
-    #grid-modal {
+    /* Modal Grade */
+    #modal {
       display: none;
       position: fixed;
       inset: 0;
       background: rgba(10, 16, 14, 0.94);
-      z-index: 100;
-      padding: 32px;
+      z-index: 99;
+      padding: 28px;
       overflow-y: auto;
     }
-    #grid-modal.open {
-      display: block;
-    }
-    .grid-header {
+    #modal.open { display: block; }
+    .modal-top {
+      max-width: 1280px;
+      margin: 0 auto 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       color: #fff;
-      margin-bottom: 20px;
-      max-width: 1280px;
-      margin-inline: auto;
     }
-    #thumbnails {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 14px;
+    #grid-thumbs {
       max-width: 1280px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
     }
     .thumb {
       background: #fff;
       border-radius: 8px;
-      padding: 14px;
+      padding: 12px;
       cursor: pointer;
       border: 3px solid transparent;
-      transition: transform 0.15s, border-color 0.15s;
     }
-    .thumb:hover {
-      transform: translateY(-2px);
-      border-color: #34d399;
-    }
-    .thumb.current {
-      border-color: var(--accent);
-    }
-    .thumb-num {
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: var(--accent);
-    }
-    .thumb-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-top: 4px;
-    }
+    .thumb.active { border-color: var(--accent); }
+    .thumb small { font-weight: 800; color: var(--accent); display: block; }
+    .thumb strong { font-size: 0.88rem; color: var(--primary); }
 
-    @media print {
-      body { background: #fff; height: auto; overflow: visible; }
-      #presentation-wrapper { height: auto; display: block; padding: 0; }
-      .slide {
-        display: flex !important;
-        box-shadow: none;
-        border: 1px solid #ccc;
-        page-break-after: always;
-        height: 100vh;
-        max-height: none;
-        max-width: none;
-        border-radius: 0;
-      }
-      #controls, #grid-modal { display: none !important; }
-    }
+    svg { max-width: 100%; height: auto; }
   </style>
 </head>
 <body>
 
-<div id="presentation-wrapper">
+<div id="stage">
 
   <!-- SLIDE 1: CAPA -->
   <section class="slide cover active" data-title="Capa">
-    <div>
-      <span class="cover-badge">Exame de Qualificação de Doutorado • PPGECM / CCT / UENF</span>
-      <h1>Uso de Cargas Orgânicas Ativas em Compósitos Poliméricos para Aplicações Ecológicas e Sustentáveis</h1>
-      <p class="cover-subtitle">Revisão sistemática (PRISMA 2020), análise bibliométrica e fundamentos para o desenvolvimento de biocompósitos multifuncionais.</p>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:24px;">
+      <div>
+        <span class="badge-top"><i data-lucide="award" size="16"></i> Exame de Qualificação de Doutorado • PPGECM / CCT / UENF</span>
+        <h1>Uso de Cargas Orgânicas Ativas em Compósitos Poliméricos para Aplicações Ecológicas e Sustentáveis</h1>
+        <p class="cover-sub">Revisão sistemática (PRISMA 2020), análise bibliométrica e fundamentos para o desenvolvimento de biocompósitos multifuncionais.</p>
+      </div>
+      <!-- SVG Ilustrativo de Compósito com Cargas Ativas -->
+      <svg width="210" height="210" viewBox="0 0 210 210" style="flex-shrink:0; opacity:0.92;">
+        <rect x="15" y="15" width="180" height="180" rx="28" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+        <circle cx="70" cy="75" r="24" fill="#34d399" fill-opacity="0.28" stroke="#6ee7b7" stroke-width="2"/>
+        <circle cx="70" cy="75" r="10" fill="#6ee7b7"/>
+        <circle cx="142" cy="68" r="19" fill="#fbbf24" fill-opacity="0.28" stroke="#fcd34d" stroke-width="2"/>
+        <circle cx="142" cy="68" r="8" fill="#fcd34d"/>
+        <circle cx="110" cy="138" r="28" fill="#34d399" fill-opacity="0.28" stroke="#6ee7b7" stroke-width="2"/>
+        <circle cx="110" cy="138" r="12" fill="#6ee7b7"/>
+        <path d="M70 75 L142 68 L110 138 Z" fill="none" stroke="rgba(255,255,255,0.45)" stroke-dasharray="4 4" stroke-width="1.5"/>
+      </svg>
     </div>
-    <div class="cover-meta">
-      <div>
-        <span>Doutorando</span>
-        <strong>Antonio Luiz da Silva Loca</strong>
-      </div>
-      <div>
-        <span>Orientador</span>
-        <strong>Prof. Felipe Perissé Duarte Lopes</strong>
-      </div>
-      <div>
-        <span>Instituição e Data</span>
-        <strong>UENF • Campos dos Goytacazes – RJ • Novembro de 2026</strong>
-      </div>
+    <div class="cover-grid">
+      <div><span>Doutorando</span><strong>Antonio Luiz da Silva Loca</strong></div>
+      <div><span>Orientador</span><strong>Prof. Felipe Perissé Duarte Lopes</strong></div>
+      <div><span>Local e Data</span><strong>UENF • Campos dos Goytacazes – RJ • Nov/2026</strong></div>
     </div>
   </section>
 
   <!-- SLIDE 2: ROTEIRO -->
   <section class="slide" data-title="Roteiro da Apresentação">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">Estrutura</span>
-        <h2>Roteiro da Apresentação</h2>
+    <div class="header">
+      <div><span class="tag">Visão Geral</span><h2>Roteiro da Apresentação</h2></div>
+      <div class="header-icon"><i data-lucide="map"></i></div>
+    </div>
+    <div class="body">
+      <div class="g3">
+        <div class="card green">
+          <h3><i data-lucide="compass" size="18"></i> 1. Introdução</h3>
+          <ul class="bullets">
+            <li>Transição de cargas inertes para ativas</li>
+            <li>Questão norteadora e hipótese</li>
+            <li>Objetivos e justificativa</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><i data-lucide="book-open" size="18"></i> 2. Revisão Bibliográfica</h3>
+          <ul class="bullets">
+            <li>Compósitos, matrizes e biomassa</li>
+            <li>Preparo e adesão interfacial</li>
+            <li>Mecanismos de bioatividade</li>
+          </ul>
+        </div>
+        <div class="card green">
+          <h3><i data-lucide="filter" size="18"></i> 3. Materiais e Métodos</h3>
+          <ul class="bullets">
+            <li>Protocolo PRISMA 2020 e PICO</li>
+            <li>Busca em 4 bases (2019–2026)</li>
+            <li>Risco de viés e bibliometria</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><i data-lucide="bar-chart-3" size="18"></i> 4. Resultados e Discussão</h3>
+          <ul class="bullets">
+            <li>Panorama bibliométrico (n = 192)</li>
+            <li>Síntese auditada dos 8 estudos</li>
+            <li>Desempenho e lacunas críticas</li>
+          </ul>
+        </div>
+        <div class="card amber">
+          <h3><i data-lucide="rocket" size="18"></i> 5. Conclusões e Futuro</h3>
+          <ul class="bullets">
+            <li>Validação da hipótese</li>
+            <li>Atualização da revisão sistemática</li>
+            <li>Agenda experimental da tese</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><i data-lucide="sparkles" size="18"></i> Contribuição Original</h3>
+          <ul class="bullets">
+            <li>Recorte focado na bioatividade</li>
+            <li>Avaliação crítica da qualidade metodológica</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="slide-body">
-      <div class="grid-3">
-        <div class="card highlight">
-          <h3>1. Introdução e Objetivos</h3>
-          <p>Contexto ambiental, evolução de cargas inertes para cargas ativas, questão de pesquisa, hipótese e justificativa.</p>
-        </div>
-        <div class="card">
-          <h3>2. Revisão Bibliográfica</h3>
-          <p>Compósitos e matrizes, biomassa lignocelulósica, rotas de preparo, adesão interfacial e mecanismos funcionais.</p>
-        </div>
-        <div class="card highlight">
-          <h3>3. Materiais e Métodos</h3>
-          <p>Protocolo PRISMA 2020, estratégia PICO, bases de dados, elegibilidade, avaliação de viés e bibliometria.</p>
-        </div>
-        <div class="card">
-          <h3>4. Resultados e Discussão</h3>
-          <p>Panorama bibliométrico (192 registros), síntese dos 8 estudos incluídos, desempenho mecânico/funcional e lacunas.</p>
-        </div>
-        <div class="card accent">
-          <h3>5. Conclusões e Etapas Futuras</h3>
-          <p>Síntese parcial, atualização da revisão sistemática, novos critérios metodológicos e agenda experimental da tese.</p>
-        </div>
-        <div class="card">
-          <h3>Contribuição Original</h3>
-          <p>Foco na multifuncionalidade química das cargas orgânicas aliada à avaliação rigorosa da qualidade metodológica.</p>
-        </div>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 2 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 2 / 30</span></div>
   </section>
 
   <!-- SLIDE 3: CONTEXTUALIZAÇÃO -->
-  <section class="slide" data-title="1. Contextualização e Problema">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">1 – Introdução</span>
-        <h2>Contextualização: Biomassa Residual e Biocompósitos</h2>
-      </div>
+  <section class="slide" data-title="Contextualização e Problema">
+    <div class="header">
+      <div><span class="tag">1 – Introdução</span><h2>Do Descarte Agroindustrial às Cargas Orgânicas Ativas</h2></div>
+      <div class="header-icon"><i data-lucide="leaf"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
+    <div class="body">
+      <div class="g2">
         <div class="card">
-          <h3>Pressão Ambiental e Oportunidade</h3>
-          <ul class="clean-list">
-            <li>Escassez de recursos fósseis, acúmulo de plásticos e metas de descarbonização exigem materiais renováveis.</li>
-            <li><strong>Biomassa lignocelulósica:</strong> matéria-prima renovável mais abundante do planeta, gerada em larga escala como resíduo agrícola e agroindustrial.</li>
-            <li>O Brasil possui ampla diversidade de resíduos (bagaço de cana, café, cítricos, coco, sisal, lignina kraft).</li>
-            <li><strong>Custo da corrosão:</strong> ~US$ 2,5 trilhões/ano (~3,4% do PIB global), impulsionando alternativas aos inibidores tóxicos (cromatos).</li>
+          <h3><i data-lucide="globe" size="18"></i> Demandas Ambientais e Industriais</h3>
+          <ul class="bullets">
+            <li>Substituição de insumos fósseis e redução de plásticos descartáveis.</li>
+            <li><strong>Biomassa lignocelulósica:</strong> resíduo renovável mais abundante (ampla oferta no Brasil).</li>
+            <li><strong>Custo global da corrosão:</strong> ~US$ 2,5 trilhões/ano (~3,4% do PIB), demandando alternativas aos cromatos tóxicos.</li>
           </ul>
         </div>
-        <div class="card highlight">
-          <h3>Mudança de Paradigma nas Cargas Vegetais</h3>
-          <ul class="clean-list">
-            <li><strong>Carga de enchimento:</strong> redução de custo e consumo de resina.</li>
-            <li><strong>Reforço estrutural:</strong> incremento de rigidez e resistência mecânica.</li>
-            <li><strong>Carga Orgânica Ativa (foco deste trabalho):</strong> frações ricas em fenólicos, flavonoides, taninos e lignina que transferem <em>funcionalidades químicas próprias</em> à matriz (antioxidante, antimicrobiana, bloqueio UV e anticorrosiva).</li>
-          </ul>
+        <div class="card green">
+          <h3><i data-lucide="layers" size="18"></i> Evolução das Cargas Vegetais</h3>
+          <!-- SVG Evolução -->
+          <svg viewBox="0 0 420 155">
+            <rect x="5" y="10" width="120" height="130" rx="10" fill="#ffffff" stroke="#9ecbb9" stroke-width="1.5"/>
+            <text x="65" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#124734">1ª Geração</text>
+            <text x="65" y="58" text-anchor="middle" font-size="11" fill="#52635d">Enchimento</text>
+            <text x="65" y="92" text-anchor="middle" font-size="10" fill="#18221e">Redução de custo</text>
+            <text x="65" y="108" text-anchor="middle" font-size="10" fill="#18221e">e consumo de resina</text>
+
+            <path d="M132 75 L146 75" stroke="#c2782d" stroke-width="2.5" marker-end="url(#arr)"/>
+            <rect x="150" y="10" width="120" height="130" rx="10" fill="#ffffff" stroke="#9ecbb9" stroke-width="1.5"/>
+            <text x="210" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#124734">2ª Geração</text>
+            <text x="210" y="58" text-anchor="middle" font-size="11" fill="#52635d">Reforço</text>
+            <text x="210" y="92" text-anchor="middle" font-size="10" fill="#18221e">Aumento de módulo</text>
+            <text x="210" y="108" text-anchor="middle" font-size="10" fill="#18221e">e resistência</text>
+
+            <path d="M277 75 L291 75" stroke="#c2782d" stroke-width="2.5"/>
+            <rect x="295" y="10" width="120" height="130" rx="10" fill="#124734"/>
+            <text x="355" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#6ee7b7">3ª Geração</text>
+            <text x="355" y="58" text-anchor="middle" font-size="11" fill="#ffffff">Carga Ativa</text>
+            <text x="355" y="88" text-anchor="middle" font-size="10" fill="#d4ebe2">Antioxidante, UV,</text>
+            <text x="355" y="104" text-anchor="middle" font-size="10" fill="#d4ebe2">Antimicrobiana e</text>
+            <text x="355" y="120" text-anchor="middle" font-size="10" fill="#d4ebe2">Anticorrosiva</text>
+          </svg>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 3 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 3 / 30</span></div>
   </section>
 
   <!-- SLIDE 4: QUESTÃO DE PESQUISA E HIPÓTESE -->
   <section class="slide" data-title="Questão de Pesquisa e Hipótese">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">1 – Introdução</span>
-        <h2>Questão de Pesquisa, Hipótese e Justificativa</h2>
-      </div>
+    <div class="header">
+      <div><span class="tag">1 – Introdução</span><h2>Questão de Pesquisa, Hipótese e Justificativa</h2></div>
+      <div class="header-icon"><i data-lucide="help-circle"></i></div>
     </div>
-    <div class="slide-body">
+    <div class="body">
       <div class="callout">
-        <strong>Questão Norteadora:</strong> Quais fontes de biomassa, matrizes poliméricas, rotas de preparo e de processamento têm sido empregadas na obtenção de compósitos com cargas orgânicas ativas, quais propriedades mecânicas, térmicas e funcionais têm sido alcançadas e quais lacunas metodológicas e tecnológicas limitam o seu avanço?
+        <strong>Questão de Pesquisa:</strong> Quais fontes de biomassa, matrizes, rotas de preparo e processamento são usados em compósitos com cargas orgânicas ativas, quais propriedades são alcançadas e quais lacunas limitam seu avanço?
       </div>
       <div class="callout warn">
-        <strong>Hipótese:</strong> Cargas orgânicas ricas em compostos bioativos, incorporadas em teores moderados e com preparo mínimo, conferem às matrizes poliméricas funcionalidades que vão além do reforço mecânico, até um <strong>teor crítico</strong> a partir do qual a aglomeração e a deficiência de adesão interfacial comprometem o desempenho.
+        <strong>Hipótese:</strong> Cargas orgânicas ricas em bioativos, incorporadas em teores moderados e com preparo mínimo, transferem funcionalidades químicas à matriz até um <strong>teor crítico</strong>, acima do qual a aglomeração e a baixa adesão interfacial degradam o material.
       </div>
-      <div class="grid-3">
+      <div class="g3">
         <div class="card">
-          <h3>Alinhamento Legal</h3>
-          <p>Política Nacional de Resíduos Sólidos (Lei 12.305/2010), Economia Circular e ODS da ONU.</p>
+          <h3><i data-lucide="scale" size="17"></i> Marco Legal</h3>
+          <p style="font-size:0.88rem;">Política Nacional de Resíduos Sólidos (Lei 12.305/2010), Economia Circular e ODS/ONU.</p>
         </div>
         <div class="card">
-          <h3>Relevância Científica</h3>
-          <p>Literatura fragmentada e heterogênea; necessidade de separar evidências robustas das preliminares.</p>
+          <h3><i data-lucide="search-check" size="17"></i> Síntese Crítica</h3>
+          <p style="font-size:0.88rem;">Organizar uma literatura dispersa e separar evidências robustas de resultados preliminares.</p>
         </div>
         <div class="card">
-          <h3>Impacto na Tese</h3>
-          <p>Embasar a seleção de matérias-primas, teores, rotas e normas para a etapa experimental.</p>
+          <h3><i data-lucide="flask-conical" size="17"></i> Base para a Tese</h3>
+          <p style="font-size:0.88rem;">Orientar a escolha de cargas, matrizes, teores e normas na fase experimental.</p>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 4 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 4 / 30</span></div>
   </section>
 
   <!-- SLIDE 5: OBJETIVOS -->
   <section class="slide" data-title="Objetivos Geral e Específicos">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">1.1 – Objetivos</span>
-        <h2>Objetivo Geral e Objetivos Específicos</h2>
+    <div class="header">
+      <div><span class="tag">1.1 – Objetivos</span><h2>Objetivo Geral e Objetivos Específicos</h2></div>
+      <div class="header-icon"><i data-lucide="target"></i></div>
+    </div>
+    <div class="body">
+      <div class="card green">
+        <h3><i data-lucide="crosshair" size="18"></i> Objetivo Geral</h3>
+        <p style="font-size:0.96rem;">Analisar o estado da arte das <strong>cargas orgânicas ativas lignocelulósicas</strong> em compósitos poliméricos via <strong>revisão sistemática (PRISMA 2020)</strong> e <strong>análise bibliométrica (2019–2026)</strong>, mapeando tendências, lacunas e rotas experimentais.</p>
       </div>
-    </div>
-    <div class="slide-body">
-      <div class="card highlight">
-        <h3>Objetivo Geral</h3>
-        <p>Analisar o estado da arte do uso de cargas orgânicas ativas de origem lignocelulósica em compósitos poliméricos, por meio de <strong>revisão sistemática (PRISMA 2020)</strong> e <strong>análise bibliométrica (2019–2026)</strong>, identificando tendências, lacunas e direções para biocompósitos multifuncionais e sustentáveis.</p>
-      </div>
-      <div class="grid-2">
-        <ul class="clean-list">
-          <li><strong>1. Fundamentos:</strong> Descrever bases de compósitos, matrizes e biomassa lignocelulósica.</li>
-          <li><strong>2. Mecanismos ativos:</strong> Discutir vias antioxidantes, antimicrobianas, proteção UV e anticorrosiva.</li>
-          <li><strong>3. Mapeamento bibliométrico:</strong> Avaliar evolução anual, países, periódicos e eixos temáticos.</li>
-        </ul>
-        <ul class="clean-list">
-          <li><strong>4. Classificação PRISMA:</strong> Categorizar fontes, matrizes, teores, preparos e processamento.</li>
-          <li><strong>5. Comparação de desempenho:</strong> Contrastar propriedades mecânicas, térmicas e funcionais.</li>
-          <li><strong>6. Risco de viés e agenda:</strong> Avaliar qualidade metodológica e propor etapas futuras da tese.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 5 / 30</span>
-    </div>
-  </section>
-
-  <!-- SLIDE 6: DIVISOR REVISÃO BIBLIOGRÁFICA -->
-  <section class="slide divider" data-title="Capítulo 2: Revisão Bibliográfica">
-    <div class="divider-num">02</div>
-    <h2>Revisão Bibliográfica</h2>
-    <p>Fundamentos de materiais compósitos, matrizes poliméricas, química da biomassa lignocelulósica, interface, mecanismos de bioatividade e rotas de processamento.</p>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 6 / 30</span>
-    </div>
-  </section>
-
-  <!-- SLIDE 7: COMPÓSITOS E MODELAGEM -->
-  <section class="slide" data-title="Materiais Compósitos e Previsão">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">2.1 – Materiais Compósitos</span>
-        <h2>Classificação, Previsão Elástica e Efeito do Teor</h2>
-      </div>
-    </div>
-    <div class="slide-body">
-      <div class="grid-2">
+      <div class="g2">
         <div class="card">
-          <h3>Classificação e Grupo de Interesse</h3>
-          <ul class="clean-list">
-            <li><strong>Fase Contínua (Matriz):</strong> protege a fase dispersa e transfere tensões via interface.</li>
-            <li><strong>Grupo de interesse:</strong> compósitos reforçados por <strong>partículas orgânicas</strong> (resíduos vegetais, MCC, lignina) em matriz polimérica, isoladas ou em <strong>compósitos híbridos</strong>.</li>
-            <li><strong>Compósitos verdes:</strong> matriz e fase dispersa de fontes renováveis e biodegradáveis.</li>
+          <ul class="bullets">
+            <li><strong>Fundamentos:</strong> Compósitos, matrizes e biomassa vegetal.</li>
+            <li><strong>Mecanismos ativos:</strong> Vias antioxidante, antimicrobiana, UV e anticorrosiva.</li>
+            <li><strong>Bibliometria:</strong> Produção anual, países, periódicos e clusters.</li>
           </ul>
         </div>
-        <div class="card highlight">
-          <h3>Regra das Misturas e Comportamento Real</h3>
-          <p><strong>Limite Superior (Isodeformação):</strong> <code>E<sub>c</sub> = E<sub>m</sub>V<sub>m</sub> + E<sub>f</sub>V<sub>f</sub></code></p>
-          <p><strong>Limite Inferior (Isotensão):</strong> <code>1/E<sub>c</sub> = V<sub>m</sub>/E<sub>m</sub> + V<sub>f</sub>/E<sub>f</sub></code></p>
-          <hr style="border:0; border-top:1px solid #b6d6c9; margin:4px 0;">
-          <p><strong>Tendência experimental:</strong> O módulo (E<sub>c</sub>) cresce monotonicamente com V<sub>f</sub>, mas a <strong>resistência à tração atinge um máximo</strong> em teores baixos/moderados e decai pela aglomeração e molhamento incompleto.</p>
+        <div class="card">
+          <ul class="bullets">
+            <li><strong>Classificação PRISMA:</strong> Fontes, matrizes, teores e processamento.</li>
+            <li><strong>Desempenho:</strong> Comparar propriedades mecânicas, térmicas e funcionais.</li>
+            <li><strong>Qualidade e Agenda:</strong> Avaliar risco de viés e propor etapas futuras.</li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 7 / 30</span>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 5 / 30</span></div>
+  </section>
+
+  <!-- SLIDE 6: DIVISOR CAPÍTULO 2 -->
+  <section class="slide divider" data-title="Capítulo 2: Revisão Bibliográfica">
+    <div class="div-num">02</div>
+    <h2>Revisão Bibliográfica</h2>
+    <p>Fundamentos de materiais compósitos, matrizes poliméricas, química da biomassa lignocelulósica, interface e mecanismos de funcionalidade ativa.</p>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 6 / 30</span></div>
+  </section>
+
+  <!-- SLIDE 7: MATERIAIS COMPÓSITOS -->
+  <section class="slide" data-title="Classificação e Regra das Misturas">
+    <div class="header">
+      <div><span class="tag">2.1 – Materiais Compósitos</span><h2>Classificação e Previsão de Propriedades Mecânicas</h2></div>
+      <div class="header-icon"><i data-lucide="boxes"></i></div>
     </div>
+    <div class="body">
+      <div class="g2">
+        <div class="card">
+          <h3><i data-lucide="git-fork" size="18"></i> Escopo deste Estudo</h3>
+          <ul class="bullets">
+            <li><strong>Compósitos Particulados:</strong> partículas orgânicas (resíduos, MCC, lignina) isoladas ou em <strong>compósitos híbridos</strong>.</li>
+            <li><strong>Biocompósitos vs. Compósitos Verdes:</strong> ao menos um constituinte renovável vs. matriz e carga totalmente renováveis/biodegradáveis.</li>
+            <li><strong>Vantagens:</strong> baixa densidade (1,2–1,5 g/cm³), menor abrasão e baixo custo energético.</li>
+          </ul>
+        </div>
+        <div class="card green">
+          <h3><i data-lucide="trending-up" size="18"></i> Módulo vs. Resistência (Curva Típica)</h3>
+          <!-- Gráfico SVG Módulo vs Resistência -->
+          <svg viewBox="0 0 380 175">
+            <line x1="40" y1="145" x2="350" y2="145" stroke="#18221e" stroke-width="2"/>
+            <line x1="40" y1="20" x2="40" y2="145" stroke="#18221e" stroke-width="2"/>
+            <text x="195" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#18221e">Teor de Carga Orgânica (% massa)</text>
+            <text x="14" y="85" text-anchor="middle" font-size="11" font-weight="bold" fill="#18221e" transform="rotate(-90 14 85)">Propriedade</text>
+            <!-- Módulo -->
+            <path d="M40 120 Q 190 85 335 35" fill="none" stroke="#124734" stroke-width="3"/>
+            <text x="275" y="32" font-size="11" font-weight="bold" fill="#124734">Módulo (Ec)</text>
+            <!-- Resistência -->
+            <path d="M40 110 Q 130 45 170 55 T 335 130" fill="none" stroke="#c2782d" stroke-width="3"/>
+            <text x="175" y="45" font-size="11" font-weight="bold" fill="#c2782d">Resistência (Pico)</text>
+            <!-- Linha Teor Crítico -->
+            <line x1="165" y1="25" x2="165" y2="145" stroke="#b91c1c" stroke-dasharray="4 4" stroke-width="1.5"/>
+            <text x="172" y="138" font-size="10" font-weight="bold" fill="#b91c1c">Teor Crítico (Aglomeração)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 7 / 30</span></div>
   </section>
 
   <!-- SLIDE 8: MATRIZES POLIMÉRICAS -->
   <section class="slide" data-title="Matrizes Poliméricas">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">2.2 – Matrizes Poliméricas</span>
-        <h2>Termoplásticos, Termofixos e Polímeros Biodegradáveis</h2>
-      </div>
+    <div class="header">
+      <div><span class="tag">2.2 – Matrizes Poliméricas</span><h2>Seleção de Matrizes: Janela Térmica e Sustentabilidade</h2></div>
+      <div class="header-icon"><i data-lucide="layers-3"></i></div>
     </div>
-    <div class="slide-body">
+    <div class="body">
       <table>
         <thead>
           <tr>
-            <th>Classe / Polímero</th>
-            <th>Temp. Processamento</th>
-            <th>Vantagens para Cargas Ativas</th>
-            <th>Limitações</th>
+            <th>Matriz Polimérica</th>
+            <th>Temp. Proc.</th>
+            <th>Pontos Fortes com Cargas Ativas</th>
+            <th>Restrições</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Termofixos (Epóxi DGEBA, Epóxi Bio, PU)</strong></td>
-            <td>Ambiente ou cura moderada (&lt; 150 °C)</td>
-            <td>Baixa viscosidade inicial; preserva compostos termolábeis; grupos –OH interagem com biomassa.</td>
-            <td>Não recicláveis por refusão; restrições ao Bisfenol A petroquímico.</td>
+            <td><strong>Termofixos (Epóxi, Bio-epóxi, PU)</strong></td>
+            <td>Ambiente a &lt; 150 °C</td>
+            <td>Baixa viscosidade; grupos –OH formam ligações de H; preserva bioativos.</td>
+            <td>Não refundíveis; restrições ao Bisfenol A fóssil.</td>
           </tr>
           <tr>
-            <td><strong>Termoplásticos Convencionais (PP, PE)</strong></td>
+            <td><strong>Poliolefinas (PP, PE)</strong></td>
             <td>160 – 240 °C</td>
-            <td>Baixo custo, reciclabilidade mecânica, escala industrial (WPC).</td>
-            <td>Apolares (exigem compatibilizante MAPP); risco de degradação térmica (&gt; 200 °C).</td>
+            <td>Escala industrial e reciclabilidade mecânica.</td>
+            <td>Apolares (exigem MAPP); degradação da carga &gt; 200 °C.</td>
           </tr>
           <tr>
-            <td><strong>Poliésteres Biodegradáveis (PLA, PBS, PBSA)</strong></td>
+            <td><strong>Biodegradáveis (PLA, PBS, PBSA)</strong></td>
             <td>125 – 180 °C</td>
-            <td>Base renovável, compostáveis; PBSA permite processamento a 125 °C preservando fenólicos.</td>
-            <td>Fragilidade (PLA), custo mais elevado, sensibilidade à hidrólise na fusão.</td>
+            <td>Renováveis e compostáveis; PBSA processa a 125 °C sem degradar fenólicos.</td>
+            <td>Fragilidade (PLA) e sensibilidade à hidrólise.</td>
           </tr>
           <tr>
-            <td><strong>Polissacarídeos (Amido, Quitosana)</strong></td>
-            <td>Solução / Baixa temp.</td>
-            <td>Quitosana possui atividade antimicrobiana intrínseca e boa formação de filmes.</td>
-            <td>Elevada sensibilidade à umidade e baixa resistência mecânica isolada.</td>
+            <td><strong>Polissacarídeos (Quitosana, Amido)</strong></td>
+            <td>Solução / Baixa T</td>
+            <td>Quitosana possui ação antimicrobiana intrínseca.</td>
+            <td>Alta hidrofilicidade e baixa resistência mecânica.</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 8 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 8 / 30</span></div>
   </section>
 
   <!-- SLIDE 9: BIOMASSA LIGNOCELULÓSICA -->
   <section class="slide" data-title="Biomassa Lignocelulósica">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">2.3 – Biomassa Lignocelulósica</span>
-        <h2>Constituintes da Parede Celular e Papel Funcional</h2>
-      </div>
+    <div class="header">
+      <div><span class="tag">2.3 – Biomassa Lignocelulósica</span><h2>Composição da Parede Celular e Funções Químicas</h2></div>
+      <div class="header-icon"><i data-lucide="sprout"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-4">
+    <div class="body">
+      <div class="g4">
         <div class="card">
           <h3>Celulose (40–50%)</h3>
-          <p>Homopolissacarídeo linear semicristalino (ligações β-1→4).</p>
-          <p><strong>Função:</strong> Rigidez axial (&gt;100 GPa nos cristais) e reforço estrutural. Alta densidade de –OH.</p>
+          <p style="font-size:0.86rem;">Polissacarídeo semicristalino (β-1→4). Confere <strong>rigidez</strong> (&gt;100 GPa) e grupos –OH.</p>
         </div>
         <div class="card">
           <h3>Hemicelulose (15–30%)</h3>
-          <p>Heteropolissacarídeo ramificado e amorfo.</p>
-          <p><strong>Função:</strong> Mais higroscópica e termicamente lábil (degrada entre 220 e 315 °C).</p>
+          <p style="font-size:0.86rem;">Amorfa e ramificada. Alta higroscopicidade e degradação precoce (220–315 °C).</p>
         </div>
-        <div class="card highlight">
+        <div class="card green">
           <h3>Lignina (15–30%)</h3>
-          <p>Polímero aromático amorfo 3D (unidades H, G e S).</p>
-          <p><strong>Função Ativa:</strong> Hidroxilas fenólicas e cromóforos conferem ação <strong>antioxidante, UV e antimicrobiana</strong>.</p>
+          <p style="font-size:0.86rem;">Polímero aromático 3D (H, G, S). Hidroxilas fenólicas geram ação <strong>antioxidante e UV</strong>.</p>
         </div>
-        <div class="card accent">
+        <div class="card amber">
           <h3>Extrativos (&lt;10%)</h3>
-          <p>Ácidos fenólicos, flavonoides, taninos, ceras e óleos.</p>
-          <p><strong>Função Ativa:</strong> Concentrados em cascas e sementes; principais responsáveis pela bioatividade.</p>
+          <p style="font-size:0.86rem;">Fenólicos, flavonoides e taninos (cascas/sementes). Principais <strong>agentes bioativos</strong>.</p>
         </div>
       </div>
-      <p style="font-size:0.9rem; color:var(--text-muted);"><strong>5 Categorias de Fontes:</strong> (1) Resíduos agrícolas (palhas, cascas); (2) Resíduos agroindustriais (bagaço, café, casca de laranja); (3) Resíduos florestais; (4) Biomassa aquática/marinha (algas); (5) Coprodutos industriais (lignina kraft).</p>
+      <div class="card">
+        <h3><i data-lucide="recycle" size="17"></i> 5 Fontes de Biomassa Exploradas</h3>
+        <p style="font-size:0.9rem;"><strong>1.</strong> Resíduos agrícolas (palhas) • <strong>2.</strong> Agroindustriais (bagaço, café, casca de laranja) • <strong>3.</strong> Florestais (serragem) • <strong>4.</strong> Aquáticas/marinhas (algas) • <strong>5.</strong> Coprodutos industriais (lignina kraft).</p>
+      </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 9 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 9 / 30</span></div>
   </section>
 
-  <!-- SLIDE 10: ROTAS DE PREPARO E INTERFACE -->
-  <section class="slide" data-title="Preparo das Cargas e Interface">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">2.4 e 2.5 – Preparo e Interface</span>
-        <h2>O Dilema do Preparo e a Adesão Carga-Matriz</h2>
-      </div>
+  <!-- SLIDE 10: PREPARO E INTERFACE -->
+  <section class="slide" data-title="Rotas de Preparo e Interface">
+    <div class="header">
+      <div><span class="tag">2.4 e 2.5 – Preparo e Interface</span><h2>Rotas de Preparo das Cargas e Adesão Interfacial</h2></div>
+      <div class="header-icon"><i data-lucide="git-merge"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
-        <div class="card highlight">
-          <h3>Rota Física Branda (Cargas Ativas)</h3>
-          <ul class="clean-list">
-            <li>Lavagem, secagem controlada, moagem e peneiramento.</li>
-            <li><strong>Vantagem:</strong> Preserva extrativos e lignina (bioatividade), baixo custo e sem efluentes químicos.</li>
-            <li><strong>Desafio:</strong> Maior heterogeneidade, hidrofilicidade e menor estabilidade térmica.</li>
+    <div class="body">
+      <div class="g2">
+        <div class="card green">
+          <h3><i data-lucide="wind" size="18"></i> Rota Física Branda (Cargas Ativas)</h3>
+          <ul class="bullets">
+            <li>Lavagem, secagem, moagem e peneiramento.</li>
+            <li><strong>Preserva extrativos e lignina</strong> (atividade química).</li>
+            <li>Baixo custo e ausência de efluentes químicos.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Rota Química Severa (MCC / Nanocelulose)</h3>
-          <ul class="clean-list">
-            <li>Desparafinação, deslignificação alcalina, branqueamento e hidrólise ácida.</li>
-            <li><strong>Vantagem:</strong> Alta pureza e cristalinidade (IC ~ 65–70%), maior rigidez e estabilidade.</li>
-            <li><strong>Desafio:</strong> Remove exatamente os fenólicos e a lignina responsáveis pela função ativa.</li>
+          <h3><i data-lucide="flask-round" size="18"></i> Rota Química Severa (MCC / Nanocelulose)</h3>
+          <ul class="bullets">
+            <li>Deslignificação alcalina, branqueamento e hidrólise ácida.</li>
+            <li>Alta pureza e cristalinidade (IC ~ 65–70%).</li>
+            <li><strong>Remove os compostos bioativos</strong> da biomassa.</li>
           </ul>
         </div>
       </div>
-      <div class="callout">
-        <strong>Conflito Interfacial:</strong> Superfície hidrofílica da biomassa vs. matrizes hidrofóbicas gera baixa molhabilidade, vazios, <em>pull-out</em> e absorção de umidade. Tratamentos (NaOH, silanos, acetilação, plasma) melhoram a interface, mas exigem equilíbrio para não lixiviar os ativos.
+      <div class="callout warn">
+        <strong>Compromisso de Superfície:</strong> Cargas hidrofílicas vs. matrizes hidrofóbicas geram <em>pull-out</em> e absorção de água. Tratamentos (NaOH, silanos, acetilação, plasma) melhoram a adesão, mas podem lixiviar os ativos.
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 10 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 10 / 30</span></div>
   </section>
 
   <!-- SLIDE 11: MECANISMOS FUNCIONAIS -->
   <section class="slide" data-title="Mecanismos das Cargas Orgânicas Ativas">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">2.6 – Propriedades Funcionais</span>
-        <h2>Mecanismos de Atuação das Cargas Orgânicas Ativas</h2>
+    <div class="header">
+      <div><span class="tag">2.6 – Propriedades Funcionais</span><h2>Mecanismos das Funcionalidades Químicas Ativas</h2></div>
+      <div class="header-icon"><i data-lucide="shield-check"></i></div>
+    </div>
+    <div class="body">
+      <div class="g2">
+        <div class="card">
+          <h3><i data-lucide="flame-kindling" size="18"></i> 1. Atividade Antioxidante</h3>
+          <p style="font-size:0.88rem;">Fenóis (Ar–OH) doam H• aos radicais peroxila (ROO•), estabilizando-os por ressonância e bloqueando a cisão de cadeias (DPPH, ABTS, FRAP).</p>
+        </div>
+        <div class="card">
+          <h3><i data-lucide="bug-off" size="18"></i> 2. Atividade Antimicrobiana</h3>
+          <p style="font-size:0.88rem;">Polifenóis desestabilizam membranas celulares, inibem enzimas e quelam íons essenciais de bactérias (norma ISO 22196).</p>
+        </div>
+        <div class="card">
+          <h3><i data-lucide="sun" size="18"></i> 3. Proteção UV e Hidrofobicidade</h3>
+          <p style="font-size:0.88rem;">Cromóforos aromáticos da lignina absorvem UVA/UVB; rugosidade particulada e ceras elevam o ângulo de contato (90°–120°).</p>
+        </div>
+        <div class="card green">
+          <h3><i data-lucide="shield" size="18"></i> 4. Proteção Anticorrosiva</h3>
+          <p style="font-size:0.88rem;"><strong>Barreira tortuosa</strong> contra H<sub>2</sub>O/O<sub>2</sub>/Cl<sup>−</sup> + <strong>inibição ativa</strong> por adsorção de taninos e fenólicos no metal (EIS, ASTM B117).</p>
+        </div>
       </div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
-        <div class="card">
-          <h3>1. Atividade Antioxidante</h3>
-          <p>Polifenóis e lignina (Ar–OH) doam átomos de H• a radicais peroxila (ROO•), interrompendo o ciclo de auto-oxidação do polímero e formando radicais fenoxila estabilizados por ressonância. Avaliada por Folin-Ciocalteu, DPPH, ABTS e FRAP.</p>
-        </div>
-        <div class="card">
-          <h3>2. Atividade Antimicrobiana</h3>
-          <p>Compostos fenólicos desestabilizam a membrana citoplasmática, inibem enzimas e complexam íons metálicos essenciais de bactérias Gram+ e Gram− (norma ISO 22196).</p>
-        </div>
-        <div class="card">
-          <h3>3. Proteção UV e Hidrofobicidade</h3>
-          <p>Anéis aromáticos e cromóforos da lignina absorvem radiação UVA/UVB. A microrrugosidade particulada e ceras naturais podem elevar o ângulo de contato (&gt; 90°–120°).</p>
-        </div>
-        <div class="card highlight">
-          <h3>4. Proteção Anticorrosiva</h3>
-          <p>Combinação de <strong>efeito de barreira</strong> (aumento da tortuosidade da difusão de H<sub>2</sub>O, O<sub>2</sub> e Cl<sup>−</sup>) com <strong>inibição ativa</strong> (adsorção de taninos e fenólicos no substrato metálico). Avaliada via EIS e ASTM B117.</p>
-        </div>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 11 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 11 / 30</span></div>
   </section>
 
-  <!-- SLIDE 12: PROCESSAMENTO, CARACTERIZAÇÃO E ACV -->
-  <section class="slide" data-title="Processamento, Caracterização e ACV">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">2.7 a 2.9 – Processamento e Sustentabilidade</span>
-        <h2>Rotas de Processamento, Caracterização e Ciclo de Vida</h2>
-      </div>
+  <!-- SLIDE 12: PROCESSAMENTO E SUSTENTABILIDADE -->
+  <section class="slide" data-title="Processamento, Normas e ACV">
+    <div class="header">
+      <div><span class="tag">2.7 a 2.9 – Processamento e ACV</span><h2>Rotas de Processamento, Caracterização e Ciclo de Vida</h2></div>
+      <div class="header-icon"><i data-lucide="settings"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-3">
+    <div class="body">
+      <div class="g3">
         <div class="card">
-          <h3>Processamento</h3>
-          <ul class="clean-list">
-            <li><strong>Termofixos:</strong> mistura mecânica/ultrassom, moldagem manual, a vácuo ou revestimento.</li>
-            <li><strong>Termoplásticos:</strong> extrusão, injeção ou compressão (&lt; 200 °C; secagem prévia obrigatória).</li>
-            <li><strong>Solvente:</strong> <em>solvent casting</em> (preserva termolábeis, escala laboratorial).</li>
+          <h3><i data-lucide="cpu" size="18"></i> Processamento</h3>
+          <ul class="bullets">
+            <li><strong>Termofixos:</strong> mistura mecânica, vácuo, revestimento.</li>
+            <li><strong>Termoplásticos:</strong> extrusão, injeção, compressão (&lt; 200 °C).</li>
+            <li><strong>Solvente:</strong> <em>solvent casting</em> (preserva termolábeis).</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Caracterização Normatizada</h3>
-          <ul class="clean-list">
-            <li><strong>Química/Térmica:</strong> FTIR, DRX (Segal), TGA, DSC, MEV/EDS, ângulo de contato.</li>
-            <li><strong>Normas:</strong> ASTM D638/D3039 (tração), D790/D7264 (flexão), D256 (impacto), D570 (água), ISO 22196.</li>
-            <li><strong>Estatística:</strong> Repetições, ANOVA e Tukey.</li>
+          <h3><i data-lucide="ruler" size="18"></i> Caracterização</h3>
+          <ul class="bullets">
+            <li><strong>Estrutural/Térmica:</strong> FTIR, DRX, TGA, DSC, MEV/EDS.</li>
+            <li><strong>Normas:</strong> ASTM D638, D3039, D790, D256, D570.</li>
+            <li><strong>Estatística:</strong> Réplicas, ANOVA e Tukey.</li>
           </ul>
         </div>
-        <div class="card highlight">
-          <h3>Ciclo de Vida (ACV)</h3>
-          <ul class="clean-list">
-            <li>Origem biológica não garante sustentabilidade automática (ISO 14040/14044).</li>
-            <li>Reagentes severos podem anular o ganho ambiental do resíduo.</li>
-            <li>Fim de vida: compostagem (ASTM D5338) vs. termofixos não recicláveis.</li>
+        <div class="card green">
+          <h3><i data-lucide="refresh-cw" size="18"></i> Ciclo de Vida (ACV)</h3>
+          <ul class="bullets">
+            <li>Normas ISO 14040 / 14044.</li>
+            <li>Reagentes severos podem anular ganhos ambientais.</li>
+            <li>Compostagem (ASTM D5338) vs. cura irreversível.</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 12 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 12 / 30</span></div>
   </section>
 
-  <!-- SLIDE 13: DIVISOR MATERIAIS E MÉTODOS -->
+  <!-- SLIDE 13: DIVISOR CAPÍTULO 3 -->
   <section class="slide divider" data-title="Capítulo 3: Materiais e Métodos">
-    <div class="divider-num">03</div>
+    <div class="div-num">03</div>
     <h2>Materiais e Métodos</h2>
-    <p>Protocolo PRISMA 2020, delimitação via estratégia PICO, busca multicêntrica, critérios de elegibilidade, avaliação de risco de viés e análise bibliométrica.</p>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 13 / 30</span>
-    </div>
+    <p>Revisão sistemática conduzida pelo protocolo PRISMA 2020, estratégia PICO, avaliação qualitativa de risco de viés e análise bibliométrica.</p>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 13 / 30</span></div>
   </section>
 
   <!-- SLIDE 14: ESTRATÉGIA PICO E BUSCA -->
-  <section class="slide" data-title="Estratégia PICO e Fontes de Dados">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">3.1 a 3.3 – Delineamento e Busca</span>
-        <h2>Estratégia PICO e Bases de Dados Consultadas</h2>
-      </div>
+  <section class="slide" data-title="Estratégia PICO e Busca">
+    <div class="header">
+      <div><span class="tag">3.1 a 3.3 – Metodologia</span><h2>Estratégia PICO e Protocolo de Busca (2019–2026)</h2></div>
+      <div class="header-icon"><i data-lucide="search"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-4">
-        <div class="card highlight">
-          <h3>P – População</h3>
-          <p>Matrizes poliméricas aplicadas em contextos de sustentabilidade.</p>
-        </div>
-        <div class="card highlight">
-          <h3>I – Intervenção</h3>
-          <p>Incorporação de cargas orgânicas particuladas com funcionalidades ativas.</p>
-        </div>
-        <div class="card">
-          <h3>C – Comparação</h3>
-          <p>Polímeros puros ou compósitos contendo cargas inertes tradicionais.</p>
-        </div>
-        <div class="card">
-          <h3>O – Desfechos</h3>
-          <p>Ganhos mecânicos, estabilidade térmica, bioatividade e biodegradabilidade.</p>
-        </div>
+    <div class="body">
+      <div class="g4">
+        <div class="card green"><h3>P – População</h3><p style="font-size:0.86rem;">Matrizes poliméricas aplicadas em sustentabilidade.</p></div>
+        <div class="card green"><h3>I – Intervenção</h3><p style="font-size:0.86rem;">Cargas orgânicas particuladas com bioatividade.</p></div>
+        <div class="card"><h3>C – Comparação</h3><p style="font-size:0.86rem;">Polímeros puros ou com cargas inertes tradicionais.</p></div>
+        <div class="card"><h3>O – Desfechos</h3><p style="font-size:0.86rem;">Propriedades mecânicas, térmicas, ativas e biodegradação.</p></div>
       </div>
       <div class="card">
-        <h3>Protocolo de Busca (Agosto de 2026 • Portal CAPES / IFES)</h3>
-        <ul class="clean-list">
-          <li><strong>4 Bases de Dados:</strong> Scopus, Web of Science, ScienceDirect e PubMed (período-alvo: 2019–2026).</li>
-          <li><strong>3 Blocos de Termos:</strong> (1) <em>polymer composite / biopolymer</em> + (2) <em>plant / vegetable / biomass / lignocellulosic</em> + (3) <em>particle / powder / particulate</em>.</li>
-          <li><strong>Ferramentas:</strong> Zotero (referências), Rayyan (triagem automatizada/manual) e R 4.6.1 / <code>bibliometrix</code> 5.4.1 (Biblioshiny).</li>
+        <h3><i data-lucide="database" size="18"></i> Bases de Dados e Ferramentas (Agosto de 2026 • Portal CAPES/IFES)</h3>
+        <ul class="bullets">
+          <li><strong>Bases:</strong> Scopus, Web of Science, ScienceDirect e PubMed.</li>
+          <li><strong>Blocos Booleanos:</strong> (1) <em>polymer composite / biopolymer</em> + (2) <em>plant / vegetable / biomass / lignocellulosic</em> + (3) <em>particle / powder / particulate</em>.</li>
+          <li><strong>Softwares:</strong> Zotero (referências), Rayyan (triagem) e R 4.6.1 / <code>bibliometrix</code> 5.4.1 (Biblioshiny).</li>
         </ul>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 14 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 14 / 30</span></div>
   </section>
 
-  <!-- SLIDE 15: ELEGIBILIDADE E AVALIAÇÃO DE VIÉS -->
-  <section class="slide" data-title="Elegibilidade e Avaliação de Viés">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">3.4 a 3.7 – Seleção e Qualidade</span>
-        <h2>Critérios de Elegibilidade e Matriz de Risco de Viés</h2>
-      </div>
+  <!-- SLIDE 15: ELEGIBILIDADE E RISCO DE VIÉS -->
+  <section class="slide" data-title="Elegibilidade e Risco de Viés">
+    <div class="header">
+      <div><span class="tag">3.4 a 3.7 – Seleção e Qualidade</span><h2>Elegibilidade e Matriz de Avaliação do Risco de Viés</h2></div>
+      <div class="header-icon"><i data-lucide="clipboard-check"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
+    <div class="body">
+      <div class="g2">
         <div class="card">
-          <h3>Critérios de Inclusão e Exclusão</h3>
-          <ul class="clean-list">
-            <li><strong>Incluídos:</strong> Estudos originais e revisões com abordagem experimental sobre compósitos poliméricos com partículas vegetais/biomassa (2019–2026) em filmes, revestimentos ou materiais estruturais sustentáveis.</li>
-            <li><strong>Excluídos:</strong> Documentos sem revisão por pares (patentes, livros, editoriais), compósitos sem partículas vegetais e polímeros isolados sem carga.</li>
+          <h3><i data-lucide="check-square" size="18"></i> Elegibilidade</h3>
+          <ul class="bullets">
+            <li><strong>Inclusão:</strong> Artigos/revisões experimentais (2019–2026) sobre compósitos poliméricos com partículas vegetais em filmes, revestimentos ou estruturas sustentáveis.</li>
+            <li><strong>Exclusão:</strong> Sem revisão por pares, sem partículas vegetais ou polímeros isolados sem carga.</li>
           </ul>
         </div>
-        <div class="card highlight">
-          <h3>8 Critérios de Qualidade Metodológica (0 ou 1 pt)</h3>
-          <ul class="clean-list">
-            <li><strong>1.</strong> Descrição da amostra (matriz e carga definidas)</li>
-            <li><strong>2.</strong> Reprodutibilidade do método experimental</li>
-            <li><strong>3.</strong> Presença de grupo de controle/referência</li>
-            <li><strong>4.</strong> Uso de ensaios normatizados (ASTM/ISO)</li>
-            <li><strong>5.</strong> Análise estatística (ANOVA, desvio-padrão)</li>
-            <li><strong>6.</strong> Amostra representativa | <strong>7.</strong> Durabilidade | <strong>8.</strong> Variáveis</li>
+        <div class="card green">
+          <h3><i data-lucide="list-checks" size="18"></i> 8 Critérios de Viés (0 ou 1 ponto)</h3>
+          <ul class="bullets">
+            <li>1. Descrição da amostra • 2. Reprodutibilidade do método</li>
+            <li>3. Controle experimental • 4. Normas (ASTM/ISO)</li>
+            <li>5. Análise estatística • 6. Amostra representativa</li>
+            <li>7. Durabilidade • 8. Quantidade de variáveis</li>
           </ul>
-          <p style="font-size:0.85rem; margin-top:4px;"><strong>Classificação (n):</strong> Alto (0–2) • Moderado (3–5) • Baixo (6–8)</p>
+          <p style="font-size:0.84rem; font-weight:700; color:var(--primary);">Alto: 0–2 • Moderado: 3–5 • Baixo: 6–8</p>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 15 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 15 / 30</span></div>
   </section>
 
-  <!-- SLIDE 16: DIVISOR RESULTADOS -->
+  <!-- SLIDE 16: DIVISOR CAPÍTULO 4 -->
   <section class="slide divider" data-title="Capítulo 4: Resultados e Discussão">
-    <div class="divider-num">04</div>
+    <div class="div-num">04</div>
     <h2>Resultados e Discussão</h2>
-    <p>Mapeamento bibliométrico, fluxograma PRISMA, análise crítica dos 8 estudos selecionados, desempenho mecânico/funcional e lacunas identificadas.</p>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 16 / 30</span>
-    </div>
+    <p>Mapeamento bibliométrico, seleção PRISMA, análise comparativa auditada dos 8 estudos incluídos e lacunas identificadas.</p>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 16 / 30</span></div>
   </section>
 
   <!-- SLIDE 17: BIBLIOMETRIA PANORAMA -->
   <section class="slide" data-title="Análise Bibliométrica: Panorama">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.1 – Análise Bibliométrica</span>
-        <h2>Evolução Temporal, Palavras-Chave e Periódicos (n = 192)</h2>
-      </div>
+    <div class="header">
+      <div><span class="tag">4.1 – Análise Bibliométrica</span><h2>Produção Científica Anual e Periódicos (n = 192)</h2></div>
+      <div class="header-icon"><i data-lucide="trending-up"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-3">
-        <div class="card highlight">
-          <span class="kpi-value">192</span>
-          <span class="kpi-label">Registros recuperados nas 4 bases</span>
-          <p style="font-size:0.88rem;">Crescimento acelerado a partir de 2020, atingindo <strong>pico de publicações em 2023</strong>.</p>
-        </div>
+    <div class="body">
+      <div class="g2">
         <div class="card">
-          <h3>Principais Eixos Temáticos</h3>
-          <p style="font-size:0.9rem;">Destaque para <em>biopolymers</em>, <em>particle size</em>, <em>chitosan</em> e <em>corrosion resistant coatings</em> (alternativa verde aos cromatos).</p>
+          <h3><i data-lucide="line-chart" size="18"></i> Evolução das Publicações</h3>
+          <!-- Gráfico SVG Evolução Anual -->
+          <svg viewBox="0 0 380 165">
+            <line x1="35" y1="135" x2="355" y2="135" stroke="#18221e" stroke-width="1.5"/>
+            <line x1="35" y1="20" x2="35" y2="135" stroke="#18221e" stroke-width="1.5"/>
+            <polyline points="55,125 110,80 165,50 220,28 275,48 330,55" fill="none" stroke="#124734" stroke-width="3"/>
+            <circle cx="55" cy="125" r="4" fill="#124734"/><text x="55" y="150" text-anchor="middle" font-size="10">2020</text>
+            <circle cx="110" cy="80" r="4" fill="#124734"/><text x="110" y="150" text-anchor="middle" font-size="10">2021</text>
+            <circle cx="165" cy="50" r="4" fill="#124734"/><text x="165" y="150" text-anchor="middle" font-size="10">2022</text>
+            <circle cx="220" cy="28" r="6" fill="#c2782d"/><text x="220" y="150" text-anchor="middle" font-size="10" font-weight="bold">2023</text>
+            <text x="220" y="18" text-anchor="middle" font-size="10" font-weight="bold" fill="#c2782d">Pico (2023)</text>
+            <circle cx="275" cy="48" r="4" fill="#124734"/><text x="275" y="150" text-anchor="middle" font-size="10">2024</text>
+            <circle cx="330" cy="55" r="4" fill="#124734"/><text x="330" y="150" text-anchor="middle" font-size="10">2025+</text>
+          </svg>
         </div>
-        <div class="card">
-          <h3>Periódicos Mais Relevantes</h3>
-          <p style="font-size:0.9rem;"><em>Materials</em>, <em>Polymers</em>, <em>Scientific Reports</em>, <em>ACS Omega</em> e <em>RSC Advances</em> lideram o volume de artigos.</p>
+        <div class="card green">
+          <h3><i data-lucide="book-marked" size="18"></i> Periódicos e Palavras-Chave</h3>
+          <ul class="bullets">
+            <li><strong>Periódicos líderes:</strong> <em>Materials</em>, <em>Polymers</em>, <em>Scientific Reports</em>, <em>ACS Omega</em> e <em>RSC Advances</em>.</li>
+            <li><strong>Termos centrais:</strong> <em>biopolymers</em>, <em>particle size</em>, <em>chitosan</em> e <em>corrosion resistant coatings</em>.</li>
+            <li><strong>Alerta metodológico:</strong> Ruído biomédico proveniente da PubMed (<em>hydroxyapatite</em>, <em>nonhuman</em>).</li>
+          </ul>
         </div>
       </div>
-      <div class="callout warn">
-        <strong>Observação Crítica:</strong> A presença de termos biomédicos nas palavras-chave (<em>controlled study, nonhuman, hydroxyapatite, bioactive glass</em>) revelou ruído proveniente da base PubMed, motivando o refinamento da busca nas etapas futuras.
-      </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 17 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 17 / 30</span></div>
   </section>
 
   <!-- SLIDE 18: DISTRIBUIÇÃO GEOGRÁFICA -->
-  <section class="slide" data-title="Distribuição Geográfica e Redes">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.1 – Análise Bibliométrica</span>
-        <h2>Distribuição Geográfica e Coocorrência de Termos</h2>
-      </div>
+  <section class="slide" data-title="Geografia e Clusters Temáticos">
+    <div class="header">
+      <div><span class="tag">4.1 – Análise Bibliométrica</span><h2>Liderança Geográfica e Clusters de Coocorrência</h2></div>
+      <div class="header-icon"><i data-lucide="globe-2"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
+    <div class="body">
+      <div class="g2">
         <div class="card">
-          <h3>Concentração Regional da Produção</h3>
-          <ul class="clean-list">
-            <li><strong>Liderança Asiática:</strong> <strong>Índia</strong> (1º lugar em autores correspondentes) e <strong>China</strong> (2º lugar) concentram a maior parte das publicações.</li>
-            <li><strong>Fator impulsionador:</strong> Grande disponibilidade de resíduos agroindustriais e políticas de valorização de biomassa.</li>
-            <li>Predomínio de publicações de país único (SCP) sobre colaborações internacionais (MCP).</li>
+          <h3><i data-lucide="map-pin" size="18"></i> Concentração Asiática</h3>
+          <ul class="bullets">
+            <li><strong>Índia (1º) e China (2º):</strong> lideram o volume de autores correspondentes.</li>
+            <li><strong>Motivação:</strong> abundância de resíduos agrícolas e agroindustriais locais.</li>
+            <li><strong>Colaboração:</strong> predomínio de publicações de país único (SCP) frente à cooperação internacional (MCP).</li>
           </ul>
         </div>
-        <div class="card highlight">
-          <h3>Clusters na Rede de Coocorrência</h3>
-          <ul class="clean-list">
-            <li><strong>Cluster 1 (Biopolímeros e Cargas):</strong> Síntese de compósitos com partículas vegetais e controle granulométrico.</li>
-            <li><strong>Cluster 2 (Revestimentos Anticorrosivos):</strong> Proteção de metais (aço, magnésio) com matrizes bio-baseadas e quitosana.</li>
-            <li><strong>Cluster 3 (Propriedades de Superfície):</strong> Morfologia, ângulo de contato, adsorção e atividade antibacteriana.</li>
+        <div class="card green">
+          <h3><i data-lucide="network" size="18"></i> 3 Clusters da Rede de Termos</h3>
+          <ul class="bullets">
+            <li><strong>Cluster 1:</strong> Biopolímeros e cargas particuladas (síntese e granulometria).</li>
+            <li><strong>Cluster 2:</strong> Revestimentos anticorrosivos para aço e magnésio (quitosana, bio-matrizes).</li>
+            <li><strong>Cluster 3:</strong> Propriedades de superfície (ângulo de contato e ação antibacteriana).</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 18 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 18 / 30</span></div>
   </section>
 
   <!-- SLIDE 19: FLUXOGRAMA PRISMA -->
   <section class="slide" data-title="Fluxograma PRISMA 2020">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.2 – Seleção dos Estudos</span>
-        <h2>Fluxograma PRISMA 2020 de Identificação e Elegibilidade</h2>
-      </div>
+    <div class="header">
+      <div><span class="tag">4.2 – Seleção dos Estudos</span><h2>Fluxograma PRISMA 2020 e Auditoria dos Dados</h2></div>
+      <div class="header-icon"><i data-lucide="git-commit-vertical"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="flow-row">
-        <div class="flow-box">
-          <strong>1. Identificação</strong><br>
-          <span style="font-size:1.5rem; font-weight:800; color:var(--primary);">n = 192</span><br>
-          <small>PubMed (115), Scopus (44), ScienceDirect (25), WoS (8)</small>
-        </div>
-        <div class="flow-arrow">➔</div>
-        <div class="flow-box">
-          <strong>2. Triagem</strong><br>
-          <span style="font-size:1.5rem; font-weight:800; color:var(--primary);">n = 181</span><br>
-          <small>11 duplicatas removidas.<br>Excluídos: 140 (Rayyan) + 18 (manual)</small>
-        </div>
-        <div class="flow-arrow">➔</div>
-        <div class="flow-box">
-          <strong>3. Elegibilidade</strong><br>
-          <span style="font-size:1.5rem; font-weight:800; color:var(--primary);">n = 23</span><br>
-          <small>Excluídos (15): sem compósito (6), sem partícula (4), não orgânico (5)</small>
-        </div>
-        <div class="flow-arrow">➔</div>
-        <div class="flow-box" style="background:var(--primary-soft);">
-          <strong>4. Incluídos</strong><br>
-          <span style="font-size:1.7rem; font-weight:800; color:var(--primary);">n = 8</span><br>
-          <small>6 Experimentais + 2 Caracterização (2021–2025)</small>
-        </div>
-      </div>
+    <div class="body">
+      <!-- Diagrama SVG PRISMA -->
+      <svg viewBox="0 0 820 175">
+        <rect x="10" y="20" width="175" height="125" rx="10" fill="#f6f9f8" stroke="#124734" stroke-width="2"/>
+        <text x="97" y="45" text-anchor="middle" font-size="12" font-weight="bold" fill="#124734">1. Identificação</text>
+        <text x="97" y="75" text-anchor="middle" font-size="22" font-weight="900" fill="#124734">n = 192</text>
+        <text x="97" y="98" text-anchor="middle" font-size="10" fill="#52635d">PubMed (115) • Scopus (44)</text>
+        <text x="97" y="113" text-anchor="middle" font-size="10" fill="#52635d">SciDirect (25) • WoS (8)</text>
+
+        <path d="M190 82 L215 82" stroke="#c2782d" stroke-width="3"/>
+        <rect x="220" y="20" width="175" height="125" rx="10" fill="#f6f9f8" stroke="#124734" stroke-width="2"/>
+        <text x="307" y="45" text-anchor="middle" font-size="12" font-weight="bold" fill="#124734">2. Triagem</text>
+        <text x="307" y="75" text-anchor="middle" font-size="22" font-weight="900" fill="#124734">n = 181</text>
+        <text x="307" y="98" text-anchor="middle" font-size="10" fill="#52635d">-11 duplicatas</text>
+        <text x="307" y="113" text-anchor="middle" font-size="10" fill="#b91c1c">Excluídos: 140 IA + 18 man.</text>
+
+        <path d="M400 82 L425 82" stroke="#c2782d" stroke-width="3"/>
+        <rect x="430" y="20" width="175" height="125" rx="10" fill="#f6f9f8" stroke="#124734" stroke-width="2"/>
+        <text x="517" y="45" text-anchor="middle" font-size="12" font-weight="bold" fill="#124734">3. Elegibilidade</text>
+        <text x="517" y="75" text-anchor="middle" font-size="22" font-weight="900" fill="#124734">n = 23</text>
+        <text x="517" y="98" text-anchor="middle" font-size="10" fill="#b91c1c">Excluídos: 15 (sem compósito,</text>
+        <text x="517" y="113" text-anchor="middle" font-size="10" fill="#b91c1c">sem partícula ou não orgânico)</text>
+
+        <path d="M610 82 L635 82" stroke="#c2782d" stroke-width="3"/>
+        <rect x="640" y="20" width="170" height="125" rx="10" fill="#124734"/>
+        <text x="725" y="45" text-anchor="middle" font-size="12" font-weight="bold" fill="#6ee7b7">4. Incluídos</text>
+        <text x="725" y="78" text-anchor="middle" font-size="26" font-weight="900" fill="#ffffff">n = 8</text>
+        <text x="725" y="102" text-anchor="middle" font-size="10" fill="#d4ebe2">6 Experimentais</text>
+        <text x="725" y="117" text-anchor="middle" font-size="10" fill="#d4ebe2">2 Caracterização</text>
+      </svg>
       <div class="callout">
-        <strong>Rigor Documental na Qualificação:</strong> Todos os valores numéricos dos 8 estudos incluídos foram auditados diretamente nos textos completos originais, corrigindo 7 inconsistências da versão preliminar do artigo de revisão.
+        <strong>Conferência nos Textos Originais:</strong> Todos os dados dos 8 artigos foram auditados integralmente para a qualificação, corrigindo 7 divergências da versão preliminar (matrizes, teores e propriedades).
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 19 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 19 / 30</span></div>
   </section>
 
-  <!-- SLIDE 20: ESTUDOS INCLUÍDOS (PARTE 1) -->
-  <section class="slide" data-title="Síntese dos Estudos Incluídos (1/2)">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.3 – Características dos Estudos</span>
-        <h2>Síntese dos Trabalhos Incluídos (1/2): Termofixos e MCC</h2>
-      </div>
+  <!-- SLIDE 20: ESTUDOS INCLUÍDOS (1/2) -->
+  <section class="slide" data-title="Estudos Incluídos (1/2)">
+    <div class="header">
+      <div><span class="tag">4.3 – Estudos Incluídos</span><h2>Síntese Auditada (1/2): Matrizes Epóxi e Celulose (MCC)</h2></div>
+      <div class="header-icon"><i data-lucide="table-2"></i></div>
     </div>
-    <div class="slide-body">
+    <div class="body">
       <table>
         <thead>
-          <tr>
-            <th>Estudo (País)</th>
-            <th>Tipo</th>
-            <th>Sistema (Matriz + Carga)</th>
-            <th>Principais Resultados Auditados</th>
-          </tr>
+          <tr><th>Autores (País)</th><th>Sistema</th><th>Principais Resultados Auditados</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Cherkashina et al. (2023)</strong><br>Rússia</td>
-            <td>Exp.</td>
-            <td>Epóxi ED-20 + Palha de trigo (10–50% massa)</td>
-            <td>Flexão sobe de 18,65 para <strong>22,61 MPa (30%)</strong> e cai a 11,52 MPa (50%). Ângulo de contato sobe de 84,96° para <strong>96,69°</strong> (hidrofóbico). T<sub>trab</sub>: 264 °C.</td>
+            <td><strong>Cherkashina et al. (2023)</strong> • Rússia</td>
+            <td>Epóxi ED-20 + Palha de trigo (10–50%)</td>
+            <td>Flexão sobe de 18,65 para <strong>22,61 MPa (30%)</strong>; cai a 11,52 MPa (50%). Ângulo de contato sobe para <strong>96,69°</strong> (hidrofóbico).</td>
           </tr>
           <tr>
-            <td><strong>Henn et al. (2021)</strong><br>Finlândia</td>
-            <td>Exp.</td>
-            <td>Epóxi bio (GDE) + Partículas coloidais de lignina kraft</td>
-            <td>Revestimento sobre madeira: ângulo de contato até <strong>120°</strong>, abrasão 106 μg/ciclo, T<sub>g</sub> 190–230 °C, proteção UV/manchas e permeabilidade ao vapor preservada.</td>
+            <td><strong>Henn et al. (2021)</strong> • Finlândia</td>
+            <td>Bio-epóxi (GDE) + Lignina kraft coloidal</td>
+            <td>Revestimento em madeira: ângulo de contato <strong>120°</strong>, abrasão 106 μg/ciclo, T<sub>g</sub> 190–230 °C, proteção UV/manchas.</td>
           </tr>
           <tr>
-            <td><strong>Karthikeyan &amp; Madhu (2025)</strong><br>Índia</td>
-            <td>Exp.</td>
-            <td>Epóxi / 4 camadas Juta + Alga parda (0–9% massa)</td>
-            <td>Com <strong>6%</strong>: tração 34,39 MPa, flexão 73,16 MPa, impacto 101,24 J/m², cisalhamento 47,45 MPa. Queda em 9% por aglomeração.</td>
+            <td><strong>Karthikeyan &amp; Madhu (2025)</strong> • Índia</td>
+            <td>Epóxi / Juta + Alga parda (0–9%)</td>
+            <td>Pico em <strong>6%</strong>: tração 34,39 MPa, flexão 73,16 MPa, impacto 101,24 J/m², cisalhamento 47,45 MPa.</td>
           </tr>
           <tr>
-            <td><strong>Sunesh et al. (2022)</strong><br>Índia</td>
-            <td>Caract.</td>
-            <td>MCC da flor de <em>Borassus flabellifer</em> (sem matriz)</td>
-            <td>77,27% celulose; Índice de cristalinidade <strong>69,81%</strong>; tamanho médio 26 μm; estabilidade térmica até ~200 °C.</td>
+            <td><strong>Sunesh et al. (2022)</strong> • Índia</td>
+            <td>MCC de flor de <em>B. flabellifer</em> (sem matriz)</td>
+            <td>77,27% celulose; cristalinidade <strong>69,81%</strong>; 26 μm; estabilidade até ~200 °C.</td>
           </tr>
           <tr>
-            <td><strong>Varma et al. (2025)</strong><br>Índia</td>
-            <td>Caract.</td>
-            <td>MCC da planta aquática <em>Myriophyllum verticillatum</em></td>
-            <td>Rendimento 45,53%; Índice de cristalinidade <strong>66,84%</strong>; diâmetro 82,29 μm; degradação primária a 196,2 °C.</td>
+            <td><strong>Varma et al. (2025)</strong> • Índia</td>
+            <td>MCC de <em>M. verticillatum</em> (sem matriz)</td>
+            <td>Rendimento 45,53%; cristalinidade <strong>66,84%</strong>; 82,29 μm; degradação a 196,2 °C.</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 20 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 20 / 30</span></div>
   </section>
 
-  <!-- SLIDE 21: ESTUDOS INCLUÍDOS (PARTE 2) -->
-  <section class="slide" data-title="Síntese dos Estudos Incluídos (2/2)">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.3 – Características dos Estudos</span>
-        <h2>Síntese dos Trabalhos Incluídos (2/2): Matrizes Biodegradáveis</h2>
-      </div>
+  <!-- SLIDE 21: ESTUDOS INCLUÍDOS (2/2) -->
+  <section class="slide" data-title="Estudos Incluídos (2/2)">
+    <div class="header">
+      <div><span class="tag">4.3 – Estudos Incluídos</span><h2>Síntese Auditada (2/2): Poliésteres Biodegradáveis</h2></div>
+      <div class="header-icon"><i data-lucide="sprout"></i></div>
     </div>
-    <div class="slide-body">
+    <div class="body">
       <table>
         <thead>
-          <tr>
-            <th>Estudo (País)</th>
-            <th>Processamento</th>
-            <th>Sistema (Matriz + Carga)</th>
-            <th>Principais Resultados Auditados</th>
-          </tr>
+          <tr><th>Autores (País)</th><th>Sistema e Rota</th><th>Principais Resultados Auditados</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Gamiz-Conde et al. (2024)</strong><br>México</td>
-            <td>Fundição por solvente (≤ 150 μm, sem trat. químico)</td>
-            <td>PLA + Borra de café (SCG) e Película prateada (CSS) (0,5–10%)</td>
-            <td><strong>3% SCG:</strong> +54,43% na tensão de escoamento e +9,18% no módulo. <strong>5% CSS:</strong> +17,8%. Queda em 10% por aglomeração.</td>
+            <td><strong>Gamiz-Conde et al. (2024)</strong> • México</td>
+            <td>PLA + Borra (SCG) e Película de café (CSS) (0,5–10%) • <em>Solvent casting</em></td>
+            <td><strong>3% SCG:</strong> +54,43% na tensão de escoamento e +9,18% no módulo. <strong>5% CSS:</strong> +17,8%. Sem tratamento químico.</td>
           </tr>
           <tr>
-            <td><strong>Pagliarini et al. (2024)</strong><br>Itália</td>
-            <td>Mistura no fundido + compressão a 125 °C</td>
-            <td>PBSA + Casca de laranja (10, 15 e 20% massa)</td>
-            <td>Módulo sobe até <strong>433,3 MPa (20%)</strong>; resistência à tração cai. Atividade antibacteriana de <strong>92,8–94,1% (<em>S. aureus</em>)</strong> e <strong>95,9–99,3% (<em>E. coli</em>)</strong>.</td>
+            <td><strong>Pagliarini et al. (2024)</strong> • Itália</td>
+            <td>PBSA + Casca de laranja (10–20%) • Fusão/compressão a 125 °C</td>
+            <td>Módulo sobe a <strong>433,3 MPa (20%)</strong>; tração cai. Atividade antibacteriana: <strong>92,8–94,1% (<em>S. aureus</em>)</strong> e <strong>95,9–99,3% (<em>E. coli</em>)</strong>.</td>
           </tr>
           <tr>
-            <td><strong>Udhayasankar et al. (2024)</strong><br>Índia</td>
-            <td>Secagem, moagem e moldagem por compressão</td>
-            <td>PLA + Bagaço, semente de tamarindo e <em>T. chebula</em> (30% híbrido)</td>
-            <td>Compósito híbrido (10+10+10%): tração <strong>54 MPa</strong>, flexão <strong>88,9 MPa</strong>, impacto 16 kJ/m², dureza 66,33 HRB, T<sub>decomp</sub> 436,7 °C.</td>
+            <td><strong>Udhayasankar et al. (2024)</strong> • Índia</td>
+            <td>PLA + Bagaço, semente tamarindo e <em>T. chebula</em> (30% híbrido)</td>
+            <td>Híbrido (10+10+10%): tração <strong>54 MPa</strong>, flexão <strong>88,9 MPa</strong>, impacto 16 kJ/m², T<sub>decomp</sub> 436,7 °C.</td>
           </tr>
         </tbody>
       </table>
       <div class="callout">
-        <strong>Destaque:</strong> Todos os 6 estudos experimentais utilizaram cargas <strong>sem tratamento químico prévio</strong>, preservando compostos fenólicos e evitando geração de efluentes.
+        <strong>Ponto Convergente:</strong> Nenhum dos 6 trabalhos experimentais realizou tratamento químico nas partículas, preservando os compostos fenólicos ativos.
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 21 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 21 / 30</span></div>
   </section>
 
-  <!-- SLIDE 22: AVALIAÇÃO DO RISCO DE VIÉS -->
+  <!-- SLIDE 22: RISCO DE VIÉS -->
   <section class="slide" data-title="Avaliação do Risco de Viés">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.4 – Qualidade Metodológica</span>
-        <h2>Avaliação do Risco de Viés dos Estudos Incluídos</h2>
-      </div>
+    <div class="header">
+      <div><span class="tag">4.4 – Qualidade Metodológica</span><h2>Avaliação do Risco de Viés e Autocrítica</h2></div>
+      <div class="header-icon"><i data-lucide="shield-alert"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
-        <div>
-          <div class="grid-2" style="margin-bottom:14px;">
-            <div class="card highlight">
-              <span class="kpi-value">62,5%</span>
-              <span class="kpi-label">Baixo Risco (5 de 8 estudos, n = 7)</span>
-            </div>
-            <div class="card accent">
-              <span class="kpi-value">5,875</span>
-              <span class="kpi-label">Pontuação Média (Faixa Moderada)</span>
-            </div>
-          </div>
-          <p style="font-size:0.9rem; margin-bottom:10px;"><strong>Frequência de atendimento por critério (de 8 estudos):</strong></p>
-          <div class="bar-row"><span class="bar-label">Método &amp; Controle</span><div class="bar-track"><div class="bar-fill" style="width:100%;">8 / 8 (100%)</div></div></div>
-          <div class="bar-row"><span class="bar-label">Análise Estatística</span><div class="bar-track"><div class="bar-fill" style="width:87.5%;">7 / 8 (87,5%)</div></div></div>
-          <div class="bar-row"><span class="bar-label">Descrição &amp; Variáveis</span><div class="bar-track"><div class="bar-fill" style="width:75%;">6 / 8 (75%)</div></div></div>
-          <div class="bar-row"><span class="bar-label">Ensaios Normatizados</span><div class="bar-track"><div class="bar-fill" style="width:62.5%;">5 / 8 (62,5%)</div></div></div>
-          <div class="bar-row"><span class="bar-label">Durabilidade</span><div class="bar-track"><div class="bar-fill" style="width:50%; background:var(--accent);">4 / 8 (50%)</div></div></div>
-          <div class="bar-row"><span class="bar-label">Amostra Representativa</span><div class="bar-track"><div class="bar-fill" style="width:37.5%; background:var(--danger);">3 / 8 (37,5%)</div></div></div>
-        </div>
+    <div class="body">
+      <div class="g2">
         <div class="card">
-          <h3>Autocrítica aos Critérios Atuais</h3>
-          <ul class="clean-list">
-            <li><strong>Estatística pouco discriminante:</strong> 7 estudos pontuaram, mas apenas <strong>Pagliarini et al. (2024)</strong> aplicou teste inferencial (ANOVA + Tukey); os demais usaram apenas média ± desvio.</li>
-            <li><strong>Estudos de caracterização:</strong> Sunesh et al. (2022) e Varma et al. (2025) receberam nota baixa (4 e 3) por não terem matriz nem ensaios mecânicos, puxando a média geral para baixo.</li>
-            <li><strong>Polaridade dos critérios:</strong> Necessidade de explicitar regras objetivas de pontuação na etapa futura.</li>
+          <h3><i data-lucide="bar-chart-2" size="18"></i> Atendimento aos Critérios (n = 8)</h3>
+          <!-- Gráfico de Barras SVG -->
+          <svg viewBox="0 0 380 185">
+            <text x="135" y="22" text-anchor="end" font-size="11" font-weight="600">Método &amp; Controle</text>
+            <rect x="142" y="10" width="200" height="16" rx="4" fill="#124734"/><text x="348" y="22" font-size="10" font-weight="bold">8/8</text>
+
+            <text x="135" y="48" text-anchor="end" font-size="11" font-weight="600">Análise Estatística</text>
+            <rect x="142" y="36" width="175" height="16" rx="4" fill="#124734"/><text x="323" y="48" font-size="10" font-weight="bold">7/8</text>
+
+            <text x="135" y="74" text-anchor="end" font-size="11" font-weight="600">Descrição &amp; Variáveis</text>
+            <rect x="142" y="62" width="150" height="16" rx="4" fill="#1c6b4e"/><text x="298" y="74" font-size="10" font-weight="bold">6/8</text>
+
+            <text x="135" y="100" text-anchor="end" font-size="11" font-weight="600">Ensaios Normatizados</text>
+            <rect x="142" y="88" width="125" height="16" rx="4" fill="#1c6b4e"/><text x="273" y="100" font-size="10" font-weight="bold">5/8</text>
+
+            <text x="135" y="126" text-anchor="end" font-size="11" font-weight="600">Durabilidade</text>
+            <rect x="142" y="114" width="100" height="16" rx="4" fill="#c2782d"/><text x="248" y="126" font-size="10" font-weight="bold">4/8</text>
+
+            <text x="135" y="152" text-anchor="end" font-size="11" font-weight="600">Amostra Representativa</text>
+            <rect x="142" y="140" width="75" height="16" rx="4" fill="#b91c1c"/><text x="223" y="152" font-size="10" font-weight="bold">3/8</text>
+          </svg>
+        </div>
+        <div class="card amber">
+          <h3><i data-lucide="alert-triangle" size="18"></i> Diagnóstico Crítico</h3>
+          <ul class="bullets">
+            <li><strong>5 estudos (62,5%)</strong> com baixo risco (n = 7) e <strong>3 (37,5%)</strong> moderado; média = 5,875.</li>
+            <li><strong>Estatística frágil:</strong> apenas Pagliarini et al. (2024) aplicaram <strong>ANOVA + Tukey</strong>; os demais usaram apenas média ± desvio.</li>
+            <li><strong>Estudos sem matriz:</strong> Sunesh (2022) e Varma (2025) foram penalizados por critérios não aplicáveis.</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 22 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 22 / 30</span></div>
   </section>
 
-  <!-- SLIDE 23: PREPARO E ADESÃO INTERFACIAL -->
-  <section class="slide" data-title="Extração, Tratamento e Interface">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.5 e 4.6 – Discussão</span>
-        <h2>Dissociação Metodológica e Adesão na Interface</h2>
-      </div>
+  <!-- SLIDE 23: EXTRACÃO E ADESÃO INTERFACIAL -->
+  <section class="slide" data-title="Extração e Adesão Interfacial">
+    <div class="header">
+      <div><span class="tag">4.5 e 4.6 – Discussão</span><h2>Dissociação Metodológica e Comportamento Interfacial</h2></div>
+      <div class="header-icon"><i data-lucide="microscope"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
+    <div class="body">
+      <div class="g2">
         <div class="card">
-          <h3>Dissociação entre Duas Vertentes</h3>
-          <ul class="clean-list">
-            <li><strong>Vertente 1 (Pureza Estrutural):</strong> Isolam MCC de alta cristalinidade via rota química severa, mas <em>não testam em matrizes poliméricas</em> (Sunesh et al., 2022; Varma et al., 2025).</li>
-            <li><strong>Vertente 2 (Aplicação In Natura):</strong> Incorporam resíduos secos/moídos diretamente em polímeros, mas <em>não quantificam composição química nem teor de fenólicos</em> (exceto Pagliarini et al., 2024).</li>
+          <h3><i data-lucide="split" size="18"></i> Duas Vertentes Desconectadas</h3>
+          <ul class="bullets">
+            <li><strong>Estudos de MCC:</strong> produzem cargas cristalinas puras via rota química, mas <em>não incorporam em polímeros</em>.</li>
+            <li><strong>Estudos de Compósitos:</strong> incorporam biomassa <em>in natura</em>, mas <em>não dosam fenólicos nem composição química</em> (exceto Pagliarini et al., 2024).</li>
           </ul>
         </div>
-        <div class="card highlight">
-          <h3>Evidências Morfológicas na Interface (MEV)</h3>
-          <ul class="clean-list">
-            <li><strong>Acima do teor crítico:</strong> Ligações de hidrogênio entre partículas geram aglomerados, microvazios, descolamento interfacial e <em>pull-out</em>.</li>
-            <li><strong>Em teores moderados:</strong> Polissacarídeos naturais (alginatos em algas) e sinergia híbrida favorecem a interação.</li>
-            <li><strong>Lacuna:</strong> Nenhum estudo quantificou quimicamente ou mecanicamente a adesão interfacial.</li>
+        <div class="card green">
+          <h3><i data-lucide="scan-eye" size="18"></i> Morfologia de Fratura (MEV)</h3>
+          <ul class="bullets">
+            <li><strong>Excesso de carga:</strong> ligações de H entre partículas geram aglomerados, vazios, descolamento e <em>pull-out</em>.</li>
+            <li><strong>Teores moderados:</strong> alginatos (algas) e sistemas híbridos favorecem o molhamento.</li>
+            <li><strong>Lacuna:</strong> nenhuma quantificação direta da resistência interfacial.</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 23 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 23 / 30</span></div>
   </section>
 
   <!-- SLIDE 24: DESEMPENHO MECÂNICO E TÉRMICO -->
   <section class="slide" data-title="Desempenho Mecânico e Térmico">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.7 – Discussão</span>
-        <h2>Desempenho Mecânico (Teor Ótimo) e Estabilidade Térmica</h2>
-      </div>
+    <div class="header">
+      <div><span class="tag">4.7 – Discussão</span><h2>Teores Ótimos Mecânicos e Comportamento Térmico</h2></div>
+      <div class="header-icon"><i data-lucide="gauge"></i></div>
     </div>
-    <div class="slide-body">
+    <div class="body">
       <table>
         <thead>
-          <tr>
-            <th>Estudo</th>
-            <th>Sistema</th>
-            <th>Teor Ótimo</th>
-            <th>Comportamento Acima do Ótimo / Térmico</th>
-          </tr>
+          <tr><th>Sistema</th><th>Teor Ótimo</th><th>Desempenho Mecânico e Térmico</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Gamiz-Conde et al. (2024)</td>
-            <td>PLA + Borra de café (SCG)</td>
-            <td><strong>3% massa</strong></td>
-            <td>Queda na tração em 5–10% por aglomeração.</td>
-          </tr>
-          <tr>
-            <td>Gamiz-Conde et al. (2024)</td>
-            <td>PLA + Película de café (CSS)</td>
-            <td><strong>5% massa</strong></td>
-            <td>Queda na tração em 10%.</td>
-          </tr>
-          <tr>
-            <td>Karthikeyan &amp; Madhu (2025)</td>
-            <td>Epóxi/Juta + Alga parda</td>
-            <td><strong>6% massa</strong></td>
-            <td>Queda em tração, flexão, impacto e cisalhamento em 9%.</td>
-          </tr>
-          <tr>
-            <td>Cherkashina et al. (2023)</td>
-            <td>Epóxi + Palha de trigo</td>
-            <td><strong>30% massa</strong></td>
-            <td>Baixa viscosidade permitiu até 50%; T<sub>trab</sub> reduziu de 306 °C para 264 °C.</td>
-          </tr>
-          <tr>
-            <td>Udhayasankar et al. (2024)</td>
-            <td>PLA + Carga híbrida</td>
-            <td><strong>30% (único)</strong></td>
-            <td>Sem curva de otimização; T<sub>decomp</sub> elevada (436,7 °C).</td>
-          </tr>
-          <tr>
-            <td>Pagliarini et al. (2024)</td>
-            <td>PBSA + Casca de laranja</td>
-            <td><strong>Funcional</strong></td>
-            <td>Módulo cresce até 20%, mas tração cai; estabilidade térmica inalterada.</td>
-          </tr>
+          <tr><td>PLA + Borra de café (SCG)</td><td><strong>3% massa</strong></td><td>Pico na tensão de escoamento (+54,4%); queda em 5–10%.</td></tr>
+          <tr><td>PLA + Película de café (CSS)</td><td><strong>5% massa</strong></td><td>Ganho de +17,8% na tensão; aglomeração em 10%.</td></tr>
+          <tr><td>Epóxi/Juta + Alga parda</td><td><strong>6% massa</strong></td><td>Máximo em tração, flexão, impacto e cisalhamento; queda em 9%.</td></tr>
+          <tr><td>Epóxi + Palha de trigo</td><td><strong>30% massa</strong></td><td>Baixa viscosidade permitiu até 50%; T<sub>trab</sub> reduziu de 306 °C para 264 °C.</td></tr>
+          <tr><td>PLA + Carga híbrida (3 fontes)</td><td><strong>30% (único)</strong></td><td>Sem curva de otimização; alta estabilidade (T<sub>decomp</sub> = 436,7 °C).</td></tr>
+          <tr><td>PBSA + Casca de laranja</td><td><strong>Funcional</strong></td><td>Módulo cresce até 20%, tração reduz; estabilidade térmica inalterada.</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 24 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 24 / 30</span></div>
   </section>
 
-  <!-- SLIDE 25: FUNCIONALIDADES E TÉCNICAS EMERGENTES -->
+  <!-- SLIDE 25: PROPRIEDADES FUNCIONAIS E TENDÊNCIAS -->
   <section class="slide" data-title="Propriedades Funcionais e Tendências">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.8 a 4.11 – Discussão</span>
-        <h2>Propriedades Funcionais Comprovadas e Tendências</h2>
-      </div>
+    <div class="header">
+      <div><span class="tag">4.8 a 4.11 – Discussão</span><h2>Funcionalidades Comprovadas e Rotas Emergentes</h2></div>
+      <div class="header-icon"><i data-lucide="sparkles"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
-        <div class="card highlight">
-          <h3>Funcionalidades Ativas Demonstradas</h3>
-          <ul class="clean-list">
-            <li><strong>Antibacteriana e Antioxidante:</strong> Casca de laranja em PBSA inibiu &gt; 92% de <em>S. aureus</em> e até 99,3% de <em>E. coli</em> (DPPH 67,25%).</li>
-            <li><strong>Multirresistência Superficial:</strong> Lignina coloidal reticulada com epóxi bio atingiu ângulo de contato de 120°, proteção UV e alta resistência à abrasão.</li>
-            <li><strong>Hidrofobicidade e Resistência Química:</strong> Palha de trigo (30%) converteu epóxi em hidrofóbico (96,69°) com resistência a meio ácido.</li>
+    <div class="body">
+      <div class="g2">
+        <div class="card green">
+          <h3><i data-lucide="check-circle-2" size="18"></i> Evidências de Bioatividade</h3>
+          <ul class="bullets">
+            <li><strong>Antibacteriana e Antioxidante:</strong> Casca de laranja em PBSA inibiu &gt;92% <em>S. aureus</em> e até 99,3% <em>E. coli</em> (DPPH 67,25%).</li>
+            <li><strong>Revestimento Multirresistente:</strong> Lignina coloidal + bio-epóxi alcançou ângulo de 120°, bloqueio UV e resistência à abrasão.</li>
+            <li><strong>Hidrofobicidade:</strong> 30% de palha de trigo elevou o ângulo de contato da epóxi para 96,69° (resistente a ácido).</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Tendências Emergentes e Processamento</h3>
-          <ul class="clean-list">
-            <li><strong>Processamento mínimo:</strong> Preservação de ativos sem solventes ou tratamentos agressivos.</li>
-            <li><strong>Passivos ambientais:</strong> Valorização de algas e plantas aquáticas invasoras.</li>
-            <li><strong>Hibridização:</strong> Combinação de múltiplas cargas vegetais para sinergia mecânica.</li>
-            <li><strong>Gargalo industrial:</strong> Nenhum estudo utilizou <strong>extrusão ou injeção</strong> (apenas rotas de bancada).</li>
+          <h3><i data-lucide="factory" size="18"></i> Tendências e Escalonamento</h3>
+          <ul class="bullets">
+            <li><strong>Química verde:</strong> processamento mínimo sem reagentes tóxicos.</li>
+            <li><strong>Passivos ambientais:</strong> uso de algas e plantas aquáticas invasoras.</li>
+            <li><strong>Gargalo industrial:</strong> 0% dos estudos usaram <strong>extrusão ou injeção</strong> (apenas bancada).</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 25 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 25 / 30</span></div>
   </section>
 
   <!-- SLIDE 26: LACUNAS IDENTIFICADAS -->
-  <section class="slide" data-title="Lacunas Identificadas na Literatura">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">4.12 – Síntese Crítica</span>
-        <h2>Principais Lacunas Tecnológicas e Metodológicas</h2>
+  <section class="slide" data-title="Lacunas Identificadas">
+    <div class="header">
+      <div><span class="tag">4.12 – Síntese Crítica</span><h2>Sete Lacunas Principais Identificadas na Literatura</h2></div>
+      <div class="header-icon"><i data-lucide="puzzle"></i></div>
+    </div>
+    <div class="body">
+      <div class="g2">
+        <div class="card">
+          <ul class="bullets">
+            <li><strong>1. Caracterização incompleta:</strong> omissão de granulometria e teor de fenólicos totais.</li>
+            <li><strong>2. Rigor estatístico baixo:</strong> apenas 1 estudo aplicou ANOVA/Tukey.</li>
+            <li><strong>3. Falta de durabilidade:</strong> sem ensaios de retenção da bioatividade após envelhecimento UV/água.</li>
+            <li><strong>4. Lacuna anticorrosiva:</strong> ausência de testes eletroquímicos (EIS) em substrato metálico.</li>
+          </ul>
+        </div>
+        <div class="card amber">
+          <ul class="bullets">
+            <li><strong>5. Dissociação extração vs. aplicação:</strong> falta integrar caracterização química e ensaio do compósito.</li>
+            <li><strong>6. Escala e matrizes fósseis:</strong> ausência de extrusão/injeção e forte uso de epóxi petroquímico.</li>
+            <li><strong>7. Sem Avaliação do Ciclo de Vida (ACV):</strong> sustentabilidade presumida, não medida.</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
-        <ul class="clean-list">
-          <li><strong>1. Caracterização incompleta das cargas:</strong> Falta de dados sistemáticos sobre distribuição granulométrica e teor de compostos fenólicos totais.</li>
-          <li><strong>2. Tratamento estatístico frágil:</strong> Apenas 1 de 8 estudos empregou teste inferencial (ANOVA/Tukey).</li>
-          <li><strong>3. Ausência de ensaios de durabilidade:</strong> Não se verifica a permanência da bioatividade após intemperismo UV ou lixiviação.</li>
-          <li><strong>4. Lacuna em proteção anticorrosiva:</strong> Tema forte na bibliometria, mas ausente nos estudos experimentais filtrados sobre substrato metálico.</li>
-        </ul>
-        <ul class="clean-list">
-          <li><strong>5. Dissociação extração vs. aplicação:</strong> Cargas purificadas não são testadas em matrizes; cargas in natura não são caracterizadas quimicamente.</li>
-          <li><strong>6. Escalonamento e matrizes fósseis:</strong> Ausência de extrusão/injeção e forte dependência de epóxi petroquímico.</li>
-          <li><strong>7. Ausência de Avaliação do Ciclo de Vida (ACV):</strong> Benefícios ambientais frequentemente presumidos, mas não quantificados.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 26 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 26 / 30</span></div>
   </section>
 
-  <!-- SLIDE 27: DIVISOR CONCLUSÕES E ETAPAS FUTURAS -->
+  <!-- SLIDE 27: DIVISOR CAPÍTULO 5 -->
   <section class="slide divider" data-title="Capítulo 5: Conclusões e Etapas Futuras">
-    <div class="divider-num">05</div>
+    <div class="div-num">05</div>
     <h2>Conclusões Parciais e Etapas Futuras</h2>
-    <p>Síntese dos achados da qualificação, plano de atualização da revisão sistemática e agenda experimental para a tese de doutorado.</p>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 27 / 30</span>
-    </div>
+    <p>Síntese dos achados da qualificação, refinamento metodológico da revisão e planejamento experimental para a tese.</p>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 27 / 30</span></div>
   </section>
 
   <!-- SLIDE 28: CONCLUSÕES PARCIAIS -->
   <section class="slide" data-title="Conclusões Parciais">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">5.1 – Conclusões Parciais</span>
-        <h2>Conclusões Parciais do Trabalho</h2>
-      </div>
+    <div class="header">
+      <div><span class="tag">5.1 – Conclusões Parciais</span><h2>Conclusões Parciais do Estudo</h2></div>
+      <div class="header-icon"><i data-lucide="award"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
-        <div class="card highlight">
-          <h3>Validação da Hipótese</h3>
-          <ul class="clean-list">
-            <li>Cargas orgânicas transferem efetivamente funcionalidades químicas (antibacteriana, antioxidante, UV e hidrofobicidade) às matrizes poliméricas.</li>
-            <li>Confirmada a existência de um <strong>teor crítico (3 a 30% em massa)</strong>, acima do qual a aglomeração degrada o desempenho mecânico.</li>
-            <li>O ganho de <strong>rigidez (módulo)</strong> é mais consistente que o de resistência; em certos sistemas o benefício é estritamente funcional.</li>
+    <div class="body">
+      <div class="g2">
+        <div class="card green">
+          <h3><i data-lucide="check-circle" size="18"></i> Sobre os Materiais</h3>
+          <ul class="bullets">
+            <li>Cargas orgânicas transferem efetivamente propriedades antibacterianas, antioxidantes, UV e hidrofóbicas.</li>
+            <li><strong>Hipótese confirmada:</strong> teor crítico entre <strong>3 e 30% em massa</strong>, limitado pela aglomeração interfacial.</li>
+            <li>O ganho de <strong>rigidez</strong> é mais consistente que o de resistência; o preparo sem reagentes preserva os bioativos.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Diagnóstico do Campo e da Revisão</h3>
-          <ul class="clean-list">
-            <li>Produção científica em expansão (pico em 2023), liderada por Índia e China.</li>
-            <li>Preparo físico brando preserva os bioativos, mas falta padronização analítica e estatística.</li>
-            <li>O reconhecimento das limitações da própria busca preliminar fundamenta o protocolo aprimorado das etapas seguintes.</li>
+          <h3><i data-lucide="file-check" size="18"></i> Sobre o Panorama Científico</h3>
+          <ul class="bullets">
+            <li>Crescimento consistente (pico em 2023), concentrado na Ásia (Índia e China).</li>
+            <li>Fragilidades em estatística inferencial, durabilidade e ensaios anticorrosivos orientam o avanço do campo.</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 28 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 28 / 30</span></div>
   </section>
 
-  <!-- SLIDE 29: ETAPAS FUTURAS DA REVISÃO -->
-  <section class="slide" data-title="Etapas Futuras: Atualização da Revisão">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">5.2 – Etapas Futuras (Parte 1)</span>
-        <h2>Plano de Aprimoramento da Revisão Sistemática</h2>
-      </div>
+  <!-- SLIDE 29: ETAPAS FUTURAS -->
+  <section class="slide" data-title="Etapas Futuras da Revisão">
+    <div class="header">
+      <div><span class="tag">5.2 – Etapas Futuras</span><h2>Plano de Atualização da Revisão Sistemática</h2></div>
+      <div class="header-icon"><i data-lucide="list-todo"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-2">
+    <div class="body">
+      <div class="g2">
         <div class="card">
-          <h3>1. Busca e Triagem (PRISMA-S)</h3>
-          <ul class="clean-list">
-            <li><strong>Bases:</strong> Scopus, Web of Science (Coleção Principal) e ScienceDirect (2019–2026), excluindo PubMed para eliminar ruído biomédico.</li>
-            <li><strong>4 Blocos Booleanos:</strong> Inclusão explícita de termos de <em>funcionalidade ativa</em> (antioxidante, antimicrobiana, UV, anticorrosiva).</li>
-            <li><strong>Dupla Revisão:</strong> Deduplicação por DOI/título e triagem pareada com resolução por consenso.</li>
+          <h3><i data-lucide="filter" size="18"></i> 1. Busca e Triagem (PRISMA-S)</h3>
+          <ul class="bullets">
+            <li><strong>Bases:</strong> Scopus, WoS e ScienceDirect (2019–2026), excluindo PubMed.</li>
+            <li><strong>4 Blocos Booleanos:</strong> inclusão de termos de <em>funcionalidade ativa</em>.</li>
+            <li><strong>Dupla revisão:</strong> deduplicação por DOI/título e triagem pareada documentada.</li>
           </ul>
         </div>
-        <div class="card highlight">
-          <h3>2. Extração Ampliada e Novos Critérios (C1–C8)</h3>
-          <ul class="clean-list">
-            <li><strong>Formulário estendido:</strong> Granulometria, teor de fenólicos, normas, número de réplicas e quantificação funcional.</li>
-            <li><strong>Critérios revisados:</strong> Separação entre estatística descritiva (C6) e inferencial ANOVA/Tukey (C7), com tratamento de itens "não aplicáveis" para estudos sem matriz.</li>
-            <li><strong>Classificação percentual:</strong> Baixo (≥ 75%), Moderado (50–74%) e Alto (&lt; 50%).</li>
+        <div class="card green">
+          <h3><i data-lucide="sliders" size="18"></i> 2. Extração e Novos Critérios (C1–C8)</h3>
+          <ul class="bullets">
+            <li><strong>Dados ampliados:</strong> granulometria, fenólicos, normas, réplicas e quantificação funcional.</li>
+            <li><strong>Critérios revisados:</strong> separar dispersão (C6) de ANOVA/Tukey (C7) e tratar itens "não aplicáveis".</li>
+            <li><strong>Nova bibliometria:</strong> figuras em português com unificação de sinônimos.</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 29 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 29 / 30</span></div>
   </section>
 
   <!-- SLIDE 30: CONTRIBUIÇÃO ORIGINAL E ENCERRAMENTO -->
-  <section class="slide" data-title="Resultados Esperados e Contribuição">
-    <div class="slide-header">
-      <div>
-        <span class="section-tag">5.3 – Resultados Esperados</span>
-        <h2>Contribuição Original e Encerramento</h2>
-      </div>
+  <section class="slide" data-title="Contribuição Original e Encerramento">
+    <div class="header">
+      <div><span class="tag">5.3 – Resultados Esperados</span><h2>Contribuição Original e Agenda da Tese</h2></div>
+      <div class="header-icon"><i data-lucide="flag"></i></div>
     </div>
-    <div class="slide-body">
-      <div class="grid-3">
-        <div class="card highlight">
-          <h3>Ineditismo do Recorte</h3>
-          <p>Primeira revisão sistemática combinando bibliometria, PRISMA 2020 e matriz crítica de viés focada na <strong>funcionalidade ativa</strong> de cargas orgânicas.</p>
+    <div class="body">
+      <div class="g3">
+        <div class="card green">
+          <h3><i data-lucide="star" size="18"></i> Ineditismo</h3>
+          <p style="font-size:0.88rem;">Primeira revisão sistemática + bibliometria + matriz de viés focada na <strong>funcionalidade ativa</strong> de cargas orgânicas.</p>
         </div>
         <div class="card">
-          <h3>Produção Científica</h3>
-          <p>Submissão do artigo de revisão atualizado a periódico indexado da área de polímeros/materiais e incorporação como capítulo da tese.</p>
+          <h3><i data-lucide="book-up" size="18"></i> Publicação</h3>
+          <p style="font-size:0.88rem;">Submissão do artigo atualizado a periódico de alto impacto em polímeros e consolidação na tese.</p>
         </div>
-        <div class="card accent">
-          <h3>Agenda Experimental</h3>
-          <p>Desenvolvimento de biocompósitos/revestimentos funcionais na UENF com caracterização química completa, ensaios de durabilidade e rigor estatístico.</p>
+        <div class="card amber">
+          <h3><i data-lucide="flask-conical" size="18"></i> Etapa Experimental</h3>
+          <p style="font-size:0.88rem;">Desenvolvimento de biocompósitos na UENF com caracterização química, durabilidade e rigor estatístico.</p>
         </div>
       </div>
-      <div class="callout" style="text-align:center; margin-top:8px;">
-        <strong>Obrigado pela atenção!</strong><br>
+      <div class="callout" style="text-align:center;">
+        <strong>Obrigado pela atenção! À disposição da Banca Examinadora.</strong><br>
         Antonio Luiz da Silva Loca • Orientador: Prof. Felipe Perissé Duarte Lopes • PPGECM / UENF
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Antonio Luiz da Silva Loca • PPGECM / UENF</span>
-      <span>Slide 30 / 30</span>
-    </div>
+    <div class="footer"><span>Antonio Luiz da Silva Loca • PPGECM / UENF</span><span>Slide 30 / 30</span></div>
   </section>
 
 </div>
 
-<!-- BARRA DE CONTROLE INFERIOR -->
+<!-- CONTROLES -->
 <div id="controls">
-  <div class="nav-btns">
-    <button class="ctrl-btn" onclick="prevSlide()" title="Anterior (Seta Esquerda)">◀ Anterior</button>
-    <button class="ctrl-btn" onclick="nextSlide()" title="Próximo (Seta Direita)">Próximo ▶</button>
-    <button class="ctrl-btn" onclick="toggleGrid()" title="Visão Geral (Tecla G)">⊞ Slides</button>
+  <div class="btn-group">
+    <button class="nav-btn" onclick="prev()"><i data-lucide="chevron-left" size="16"></i> Anterior</button>
+    <button class="nav-btn" onclick="next()">Próximo <i data-lucide="chevron-right" size="16"></i></button>
+    <button class="nav-btn" onclick="toggleModal()"><i data-lucide="layout-grid" size="16"></i> Slides (G)</button>
   </div>
-  <div id="progress-bar-wrap">
-    <div id="progress-bar"></div>
-  </div>
-  <div id="slide-counter">Slide 1 de 30</div>
+  <div id="bar-wrap"><div id="bar-fill"></div></div>
+  <div id="counter">Slide 1 de 30</div>
 </div>
 
-<!-- MODAL DE VISÃO GERAL (GRID) -->
-<div id="grid-modal">
-  <div class="grid-header">
-    <h3>Visão Geral dos 30 Slides (Clique para navegar)</h3>
-    <button class="ctrl-btn" onclick="toggleGrid()">✕ Fechar (ESC)</button>
+<!-- MODAL VISÃO GERAL -->
+<div id="modal">
+  <div class="modal-top">
+    <h3>Visão Geral dos 30 Slides (Clique para ir)</h3>
+    <button class="nav-btn" onclick="toggleModal()"><i data-lucide="x" size="16"></i> Fechar</button>
   </div>
-  <div id="thumbnails"></div>
+  <div id="grid-thumbs"></div>
 </div>
 
 <script>
-  const slides = document.querySelectorAll('.slide');
-  const totalSlides = slides.length;
-  const counterEl = document.getElementById('slide-counter');
-  const progressBar = document.getElementById('progress-bar');
-  const gridModal = document.getElementById('grid-modal');
-  const thumbnailsEl = document.getElementById('thumbnails');
-  let currentIndex = 0;
+  lucide.createIcons();
 
-  // Gerar miniaturas na visão geral
-  slides.forEach((slide, idx) => {
-    const thumb = document.createElement('div');
-    thumb.className = 'thumb' + (idx === 0 ? ' current' : '');
-    thumb.innerHTML = `<div class="thumb-num">SLIDE ${idx + 1}</div><div class="thumb-title">${slide.dataset.title || 'Slide ' + (idx + 1)}</div>`;
-    thumb.onclick = () => {
-      goToSlide(idx);
-      toggleGrid(false);
-    };
-    thumbnailsEl.appendChild(thumb);
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const counter = document.getElementById('counter');
+  const bar = document.getElementById('bar-fill');
+  const modal = document.getElementById('modal');
+  const grid = document.getElementById('grid-thumbs');
+  let idx = 0;
+
+  slides.forEach((s, i) => {
+    const t = document.createElement('div');
+    t.className = 'thumb' + (i === 0 ? ' active' : '');
+    t.innerHTML = `<small>SLIDE ${i + 1}</small><strong>${s.dataset.title}</strong>`;
+    t.onclick = () => { show(i); toggleModal(false); };
+    grid.appendChild(t);
   });
 
-  function goToSlide(index) {
-    if (index < 0) index = 0;
-    if (index >= totalSlides) index = totalSlides - 1;
-
-    slides[currentIndex].classList.remove('active');
-    thumbnailsEl.children[currentIndex].classList.remove('current');
-
-    currentIndex = index;
-
-    slides[currentIndex].classList.add('active');
-    thumbnailsEl.children[currentIndex].classList.add('current');
-
-    counterEl.textContent = `Slide ${currentIndex + 1} de ${totalSlides}`;
-    progressBar.style.width = `${((currentIndex + 1) / totalSlides) * 100}%`;
+  function show(n) {
+    if (n < 0) n = 0;
+    if (n >= total) n = total - 1;
+    slides[idx].classList.remove('active');
+    grid.children[idx].classList.remove('active');
+    idx = n;
+    slides[idx].classList.add('active');
+    grid.children[idx].classList.add('active');
+    counter.textContent = `Slide ${idx + 1} de ${total}`;
+    bar.style.width = `${((idx + 1) / total) * 100}%`;
   }
 
-  function nextSlide() {
-    goToSlide(currentIndex + 1);
-  }
-
-  function prevSlide() {
-    goToSlide(currentIndex - 1);
-  }
-
-  function toggleGrid(forceState) {
-    if (typeof forceState === 'boolean') {
-      gridModal.classList.toggle('open', forceState);
-    } else {
-      gridModal.classList.toggle('open');
-    }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  function toggleModal(force) {
+    modal.classList.toggle('open', typeof force === 'boolean' ? force : !modal.classList.contains('open'));
   }
 
   document.addEventListener('keydown', (e) => {
-    if (gridModal.classList.contains('open')) {
-      if (e.key === 'Escape' || e.key.toLowerCase() === 'g') toggleGrid(false);
+    if (modal.classList.contains('open')) {
+      if (e.key === 'Escape' || e.key.toLowerCase() === 'g') toggleModal(false);
       return;
     }
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
-      e.preventDefault();
-      nextSlide();
-    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-      e.preventDefault();
-      prevSlide();
-    } else if (e.key === 'Home') {
-      goToSlide(0);
-    } else if (e.key === 'End') {
-      goToSlide(totalSlides - 1);
-    } else if (e.key.toLowerCase() === 'g') {
-      toggleGrid(true);
-    }
+    if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(total - 1);
+    else if (e.key.toLowerCase() === 'g') toggleModal(true);
   });
 </script>
-
 </body>
 </html>
